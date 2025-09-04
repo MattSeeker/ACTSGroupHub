@@ -12,11 +12,12 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #fafafa;
             min-height: 100vh;
             padding: 2rem 1rem;
+            color: #1a1a1a;
         }
 
         .newsletter-container {
@@ -24,12 +25,13 @@
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
             overflow: hidden;
+            border: 1px solid #f3f4f6;
         }
 
         .header {
-            background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+            background: linear-gradient(135deg, #0047AB 0%, #50C878 100%);
             color: white;
             padding: 2rem;
             text-align: center;
@@ -82,10 +84,29 @@
             opacity: 0.8;
         }
 
+        .back-nav {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
         .verse-section {
             background: #f8fafc;
             padding: 2rem;
-            border-left: 4px solid #4e54c8;
+            border-left: 4px solid #0047AB;
             margin: 2rem 0;
         }
 
@@ -99,7 +120,7 @@
 
         .verse-reference {
             font-weight: 600;
-            color: #4e54c8;
+            color: #0047AB;
             text-align: right;
         }
 
@@ -121,7 +142,7 @@
         }
 
         .events-section {
-            background: #f7fafc;
+            background: #f8fafc;
             border-radius: 15px;
             padding: 1.5rem;
         }
@@ -129,10 +150,10 @@
         .section-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #2d3748;
+            color: #1f2937;
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 3px solid #4e54c8;
+            border-bottom: 3px solid #0047AB;
             display: inline-block;
         }
 
@@ -141,19 +162,19 @@
             border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            border-left: 4px solid #48bb78;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #50C878;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .event:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .event-date {
             font-weight: 700;
-            color: #2d3748;
+            color: #1f2937;
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
@@ -165,12 +186,12 @@
         }
 
         .event-details {
-            color: #718096;
+            color: #6b7280;
             line-height: 1.5;
         }
 
         .location-link {
-            color: #4e54c8;
+            color: #0047AB;
             text-decoration: none;
             font-weight: 500;
         }
@@ -180,7 +201,7 @@
         }
 
         .stf-events {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0047AB 0%, #50C878 100%);
             color: white;
         }
 
@@ -208,7 +229,7 @@
         }
 
         .footer {
-            background: #2d3748;
+            background: #1f2937;
             color: white;
             text-align: center;
             padding: 1.5rem;
@@ -216,6 +237,149 @@
 
         .footer p {
             opacity: 0.8;
+        }
+
+        /* Enhanced sections with Modern Minimalist styling */
+        .prayer-service-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 2rem;
+            margin: 0;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #0047AB;
+        }
+
+        .section-card h2 {
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .prayer-item, .service-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 3px solid #50C878;
+        }
+
+        .prayer-item .prayer-title, .service-item .service-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .prayer-item .prayer-details, .service-item .service-details {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .call-to-action {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-box {
+            background: rgba(0, 71, 171, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 2px solid rgba(0, 71, 171, 0.2);
+        }
+
+        .cta-box .cta-text {
+            color: #0047AB;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-box .cta-subtitle {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .looking-ahead-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
+            padding: 2rem;
+            margin: 0;
+        }
+
+        .future-events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .future-event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .future-event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .future-event-card .event-month {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .calendar-links-section {
+            background: linear-gradient(135deg, #0047AB 0%, #50C878 100%);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .calendar-links-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .calendar-links-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .calendar-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .calendar-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         /* Mobile Responsiveness */
@@ -240,6 +404,15 @@
             .event {
                 padding: 1rem;
             }
+
+            .future-events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -247,6 +420,7 @@
     <div class="newsletter-container">
         <!-- Header -->
         <div class="header">
+            <a href="index.html" class="back-nav">← Back to Hub</a>
             <div class="header-content">
                 <div class="logo-placeholder">✝️</div>
                 <h1 class="title">ACTS</h1>
@@ -356,81 +530,30 @@
         </div>
 
         <!-- Prayer Requests & Service Section -->
-        <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 2rem; margin: 0;">
+        <div class="prayer-service-section">
             <div style="max-width: 700px; margin: 0 auto;">
-                
-                <!-- Prayer Requests -->
-                <div style="margin-bottom: 2rem;">
-                    <h2 style="color: #2d3748; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                        🙏 Prayer Requests
-                    </h2>
+                <div class="section-card">
+                    <h2>🙏 Prayer Requests</h2>
                     
-                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #4e54c8;">
-                        <div style="margin-bottom: 1rem;">
-                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.25rem;">🤝 Our Group</div>
-                            <div style="color: #718096; line-height: 1.6;">For the well-being and God's movement in our group</div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1rem;">
-                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.25rem;">👨‍👩‍👧‍👦 Toni</div>
-                            <div style="color: #718096; line-height: 1.6;">For God's will in some family dynamics</div>
-                        </div>
-                        
-                        <div>
-                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.25rem;">👑 Matt</div>
-                            <div style="color: #718096; line-height: 1.6;">For submission and guidance in group leadership with Toni</div>
-                        </div>
+                    <div class="prayer-item">
+                        <div class="prayer-title">🤝 Our Group</div>
+                        <div class="prayer-details">For the well-being and God's movement in our group</div>
                     </div>
-                </div>
-
-                <!-- Service Opportunities -->
-                <div>
-                    <h2 style="color: #2d3748; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                        ❤️ Service Opportunities
-                    </h2>
                     
-                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #48bb78;">
-                        <div style="background: #f0fff4; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid #9ae6b4;">
-                            <div style="font-weight: 600; color: #22543d; margin-bottom: 0.5rem; text-align: center;">🙏 Group Prayer Request</div>
-                            <div style="color: #2f855a; text-align: center; font-style: italic;">
-                                For God to lead us into the right service opportunity
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1rem;">
-                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.75rem;">Current Ideas Being Considered:</div>
-                            
-                            <div style="margin-bottom: 0.75rem;">
-                                <div style="font-weight: 600; color: #2d3748; margin-bottom: 0.25rem;">⛓️‍💥 <a href="https://abebrown.org/" target="_blank" style="color: #2d3748; text-decoration: none; border-bottom: 2px solid #4e54c8;">Abe Brown (Prison) Ministries</a></div>
-                                <div style="color: #718096; font-size: 0.9rem; padding-left: 1rem;">Reaching those behind bars with hope and restoration</div>
-                            </div>
-                            
-                            <div style="margin-bottom: 0.75rem;">
-                                <div style="font-weight: 600; color: #2d3748; margin-bottom: 0.25rem;">🏠 Homeless Ministries</div>
-                                <div style="color: #718096; font-size: 0.9rem; padding-left: 1rem;">
-                                    • <strong><a href="https://loveinctampa.org/" target="_blank" style="color: #4e54c8; text-decoration: none; border-bottom: 1px solid #4e54c8;">Love Inc. Tampa</a></strong> - Connecting needs with resources<br>
-                                    • <strong><a href="https://amazinglovemin.org/" target="_blank" style="color: #4e54c8; text-decoration: none; border-bottom: 1px solid #4e54c8;">Amazing Love Ministries</a></strong> - Direct outreach and support
-                                </div>
-                            </div>
-                            
-                            <div style="background: #fef5e7; border-radius: 8px; padding: 1rem; border: 1px solid #f6ad55;">
-                                <div style="font-weight: 600; color: #744210; margin-bottom: 0.25rem;">💡 Have an idea?</div>
-                                <div style="color: #975a16; font-size: 0.9rem;">
-                                    We'd love to hear other service ideas from group members! Share your heart for ministry with Matt and/or Toni.
-                                </div>
-                            </div>
-                        </div>
+                    <div class="prayer-item">
+                        <div class="prayer-title">👨‍👩‍👧‍👦 Toni</div>
+                        <div class="prayer-details">For God's will in some family dynamics</div>
                     </div>
-                </div>
+                    
+                    <div class="prayer-item">
+                        <div class="prayer-title">👑 Matt</div>
+                        <div class="prayer-details">For submission and guidance in group leadership with Toni</div>
+                    </div>
 
-                <!-- Call to Action -->
-                <div style="text-align: center; margin-top: 2rem;">
-                    <div style="background: rgba(78, 84, 200, 0.1); border-radius: 10px; padding: 1.5rem; border: 2px solid rgba(78, 84, 200, 0.2);">
-                        <div style="color: #4e54c8; font-weight: 600; margin-bottom: 0.5rem;">
-                            "For where two or three gather in my name, there am I with them." - Matthew 18:20
-                        </div>
-                        <div style="color: #4a5568; font-size: 0.9rem;">
-                            Let's lift each other up in prayer and seek God's direction for our service together
+                    <div class="call-to-action">
+                        <div class="cta-box">
+                            <div class="cta-text">"For where two or three gather in my name, there am I with them." - Matthew 18:20</div>
+                            <div class="cta-subtitle">Let's lift each other up in prayer and seek God's direction for our service together</div>
                         </div>
                     </div>
                 </div>
@@ -438,65 +561,47 @@
         </div>
 
         <!-- Looking Ahead Section -->
-        <div style="background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%); padding: 2rem; margin: 0;">
+        <div class="looking-ahead-section">
             <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="color: #2d3748; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                    👀 Looking Ahead - Exciting Events Coming!
-                </h2>
+                <h2 style="color: #1f2937; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem;">👀 Looking Ahead - Exciting Events Coming!</h2>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                    
-                    <!-- October -->
-                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #f6ad55;">
-                        <div style="color: #ed8936; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            🎃 October
-                        </div>
-                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Candy Trail</div>
-                        <div style="color: #718096; font-size: 0.9rem;">Date TBD - Stay tuned for details!</div>
+                <div class="future-events-grid">
+                    <div class="future-event-card">
+                        <div class="event-month" style="color: #f59e0b;">🎃 October</div>
+                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.25rem;">Candy Trail</div>
+                        <div style="color: #6b7280; font-size: 0.9rem;">Date TBD - Stay tuned for details!</div>
                     </div>
 
-                    <!-- November -->
-                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #d69e2e;">
-                        <div style="color: #b7791f; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            🦃 November
-                        </div>
-                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Friendsgiving</div>
-                        <div style="color: #718096; font-size: 0.9rem;">
+                    <div class="future-event-card">
+                        <div class="event-month" style="color: #d97706;">🦃 November</div>
+                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.5rem;">Friendsgiving</div>
+                        <div style="color: #6b7280; font-size: 0.9rem;">
                             <strong>November 15th</strong><br>
                             Format TBD - Get ready to give thanks together!
                         </div>
                     </div>
 
-                    <!-- December -->
-                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #e53e3e;">
-                        <div style="color: #c53030; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            🎄 December
-                        </div>
-                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Christmas Gathering</div>
-                        <div style="color: #718096; font-size: 0.9rem;">Date TBD - Celebrating the season together!</div>
+                    <div class="future-event-card">
+                        <div class="event-month" style="color: #dc2626;">🎄 December</div>
+                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.25rem;">Christmas Gathering</div>
+                        <div style="color: #6b7280; font-size: 0.9rem;">Date TBD - Celebrating the season together!</div>
                     </div>
 
-                    <!-- January -->
-                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #4299e1;">
-                        <div style="color: #2b6cb0; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            ❄️ January
-                        </div>
-                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Fire Pit, S'mores & Worship</div>
-                        <div style="color: #718096; font-size: 0.9rem;">Cozy winter gathering with fellowship and praise</div>
+                    <div class="future-event-card">
+                        <div class="event-month" style="color: #0047AB;">❄️ January</div>
+                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.25rem;">Fire Pit, S'mores & Worship</div>
+                        <div style="color: #6b7280; font-size: 0.9rem;">Cozy winter gathering with fellowship and praise</div>
                     </div>
 
-                    <!-- February -->
-                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #ed64a6;">
-                        <div style="color: #b83280; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                            💖 February
-                        </div>
-                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.5rem;">Love of God Valentine's Day Outing</div>
-                        <div style="color: #718096; font-size: 0.9rem; margin-bottom: 0.75rem;">
+                    <div class="future-event-card">
+                        <div class="event-month" style="color: #50C878;">💖 February</div>
+                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.5rem;">Love of God Valentine's Day Outing</div>
+                        <div style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.75rem;">
                             <strong>February 14th</strong>
                         </div>
-                        <div style="background: #fef5e7; border-radius: 8px; padding: 0.75rem; border: 1px solid #f6ad55;">
-                            <div style="color: #744210; font-weight: 600; margin-bottom: 0.25rem; font-size: 0.85rem;">Location Ideas:</div>
-                            <div style="color: #975a16; font-size: 0.8rem; line-height: 1.4;">
+                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem; border: 1px solid #e2e8f0;">
+                            <div style="color: #0047AB; font-weight: 600; margin-bottom: 0.25rem; font-size: 0.85rem;">Location Ideas:</div>
+                            <div style="color: #4a5568; font-size: 0.8rem; line-height: 1.4;">
                                 • Replay Pinball Museum (Tarpon Springs)<br>
                                 • Dave & Buster's (Brandon)<br>
                                 • Escape Room Adventure<br>
@@ -505,32 +610,16 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Encouragement Note -->
-                <div style="text-align: center; margin-top: 2rem;">
-                    <div style="background: rgba(72, 187, 120, 0.1); border-radius: 10px; padding: 1.5rem; border: 2px solid rgba(72, 187, 120, 0.2);">
-                        <div style="color: #38a169; font-weight: 600; margin-bottom: 0.5rem;">
-                            So many great moments ahead! 🎉
-                        </div>
-                        <div style="color: #4a5568; font-size: 0.9rem;">
-                            Mark your calendars and get ready for fellowship, fun, and growing deeper in faith together
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
         <!-- Calendar Links Section -->
-        <div style="background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%); padding: 2rem; text-align: center;">
-            <h2 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">📅 Interactive Calendars</h2>
-            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem;">View, export, and never miss an event!</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="acts_calendar.html" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; backdrop-filter: blur(10px); transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">
-                    📋 ACTS Events Calendar
-                </a>
-                <a href="stf_calendar.html" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; backdrop-filter: blur(10px); transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">
-                    ⛪ STF Events Calendar
-                </a>
+        <div class="calendar-links-section">
+            <h2>📅 Interactive Calendars</h2>
+            <p>View, export, and never miss an event!</p>
+            <div class="calendar-buttons">
+                <a href="acts_calendar.html" class="calendar-button">📋 ACTS Events Calendar</a>
+                <a href="stf_calendar.html" class="calendar-button">⛪ STF Events Calendar</a>
             </div>
         </div>
 
