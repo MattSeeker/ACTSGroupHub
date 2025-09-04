@@ -24,98 +24,78 @@
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             border: 1px solid #f3f4f6;
         }
 
         .header {
-            background: linear-gradient(135deg, #0047AB 0%, #50C878 100%);
-            color: white;
+            background: white;
+            color: #1f2937;
             padding: 2rem;
             text-align: center;
+            border-bottom: 1px solid #f3f4f6;
             position: relative;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo-placeholder {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .date {
-            font-size: 1rem;
-            opacity: 0.8;
         }
 
         .back-nav {
             position: absolute;
             top: 1rem;
             left: 1rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #4b5563;
             padding: 0.5rem 1rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.875rem;
             transition: all 0.2s ease;
-            backdrop-filter: blur(10px);
         }
 
         .back-nav:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
+            background: #0047AB;
+            color: white;
+            border-color: #0047AB;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0047AB, #50C878);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: #9ca3af;
         }
 
         .verse-section {
-            background: #f8fafc;
+            background: white;
             padding: 2rem;
-            border-left: 4px solid #0047AB;
-            margin: 2rem 0;
+            border-left: 3px solid #0047AB;
+            margin: 2rem;
+            border-radius: 8px;
+            background: #fafafa;
         }
 
         .verse-text {
             font-style: italic;
             font-size: 1.1rem;
             color: #4a5568;
-            margin-bottom: 0.5rem;
-            line-height: 1.8;
+            margin-bottom: 1rem;
+            line-height: 1.7;
         }
 
         .verse-reference {
@@ -128,11 +108,20 @@
             padding: 0 2rem 2rem;
         }
 
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
         .events-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         @media (min-width: 768px) {
@@ -142,52 +131,43 @@
         }
 
         .events-section {
-            background: #f8fafc;
-            border-radius: 15px;
-            padding: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #0047AB;
-            display: inline-block;
+            background: white;
         }
 
         .event {
             background: white;
-            border-radius: 10px;
+            border: 1px solid #f3f4f6;
+            border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #50C878;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .event:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-color: #e5e7eb;
         }
 
         .event-date {
             font-weight: 700;
-            color: #1f2937;
-            font-size: 1.1rem;
+            color: #0047AB;
+            font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .event-title {
             font-weight: 600;
-            color: #4a5568;
+            color: #1f2937;
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .event-details {
             color: #6b7280;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .location-link {
@@ -201,160 +181,138 @@
         }
 
         .stf-events {
-            background: linear-gradient(135deg, #0047AB 0%, #50C878 100%);
-            color: white;
-        }
-
-        .stf-events .section-title {
-            color: white;
-            border-bottom-color: white;
+            padding: 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 1px solid #f3f4f6;
         }
 
         .stf-event {
-            background: rgba(255, 255, 255, 0.1);
-            border-left: 4px solid white;
-            backdrop-filter: blur(10px);
-        }
-
-        .stf-event .event-date {
-            color: white;
-        }
-
-        .stf-event .event-title {
-            color: rgba(255, 255, 255, 0.95);
-        }
-
-        .stf-event .event-details {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .footer {
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .footer p {
-            opacity: 0.8;
-        }
-
-        /* Enhanced sections with Modern Minimalist styling */
-        .prayer-service-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: 2rem;
-            margin: 0;
-        }
-
-        .section-card {
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #0047AB;
-        }
-
-        .section-card h2 {
-            color: #1f2937;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .prayer-item, .service-item {
-            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
             padding: 1rem;
-            background: #f8fafc;
-            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            border-radius: 6px;
             border-left: 3px solid #50C878;
         }
 
-        .prayer-item .prayer-title, .service-item .service-title {
+        .stf-event:last-child {
+            margin-bottom: 0;
+        }
+
+        .stf-event .event-date {
+            color: #50C878;
+            font-size: 0.85rem;
+        }
+
+        .stf-event .event-title {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .prayer-section {
+            background: white;
+            margin: 2rem 0;
+        }
+
+        .prayer-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid #f3f4f6;
+        }
+
+        .prayer-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .prayer-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #50C878;
+        }
+
+        .prayer-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .prayer-name {
             font-weight: 600;
             color: #1f2937;
             margin-bottom: 0.25rem;
         }
 
-        .prayer-item .prayer-details, .service-item .service-details {
+        .prayer-request {
             color: #6b7280;
-            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
-        .call-to-action {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .cta-box {
-            background: rgba(0, 71, 171, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
-            border: 2px solid rgba(0, 71, 171, 0.2);
-        }
-
-        .cta-box .cta-text {
-            color: #0047AB;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-box .cta-subtitle {
-            color: #4a5568;
-            font-size: 0.9rem;
-        }
-
-        .looking-ahead-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
-            padding: 2rem;
-            margin: 0;
+        .looking-ahead {
+            background: white;
+            margin: 2rem 0;
         }
 
         .future-events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .future-event-card {
             background: white;
-            border-radius: 15px;
+            border: 1px solid #f3f4f6;
+            border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .future-event-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-color: #e5e7eb;
         }
 
-        .future-event-card .event-month {
+        .future-month {
             font-weight: 700;
-            font-size: 1.1rem;
+            color: #0047AB;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .calendar-links-section {
-            background: linear-gradient(135deg, #0047AB 0%, #50C878 100%);
+        .future-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .future-details {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .calendar-links {
+            background: white;
             padding: 2rem;
             text-align: center;
+            border-top: 1px solid #f3f4f6;
         }
 
-        .calendar-links-section h2 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+        .calendar-links h2 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
-        .calendar-links-section p {
-            color: rgba(255, 255, 255, 0.9);
+        .calendar-links p {
+            color: #6b7280;
             margin-bottom: 1.5rem;
         }
 
@@ -366,20 +324,54 @@
         }
 
         .calendar-button {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #4b5563;
             padding: 0.75rem 1.5rem;
-            border-radius: 10px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            display: inline-block;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
 
         .calendar-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            background: #0047AB;
+            color: white;
+            border-color: #0047AB;
+        }
+
+        .calendar-button.secondary {
+            background: #50C878;
+            color: white;
+            border-color: #50C878;
+        }
+
+        .calendar-button.secondary:hover {
+            background: #459a68;
+        }
+
+        .footer {
+            background: #fafafa;
+            color: #6b7280;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .footer-contact {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-phone {
+            color: #0047AB;
+            text-decoration: none;
+            font-weight: 500;
         }
 
         /* Mobile Responsiveness */
@@ -388,12 +380,8 @@
                 padding: 1rem 0.5rem;
             }
 
-            .title {
-                font-size: 2rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
+            .header {
+                padding: 1.5rem;
             }
 
             .verse-section,
@@ -418,18 +406,13 @@
 </head>
 <body>
     <div class="newsletter-container">
-        <!-- Header -->
         <div class="header">
             <a href="index.html" class="back-nav">← Back to Hub</a>
-            <div class="header-content">
-                <div class="logo-placeholder">✝️</div>
-                <h1 class="title">ACTS</h1>
-                <p class="subtitle">Adult Christian Tampa Singles</p>
-                <p class="date">September 2025</p>
-            </div>
+            <h1 class="logo">✝️ ACTS</h1>
+            <p class="subtitle">Adult Christian Tampa Singles</p>
+            <p class="date">September 2025</p>
         </div>
 
-        <!-- Bible Verse -->
         <div class="verse-section">
             <p class="verse-text">
                 Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.
@@ -437,10 +420,8 @@
             <p class="verse-reference">Colossians 3:16</p>
         </div>
 
-        <!-- Content -->
         <div class="content">
             <div class="events-grid">
-                <!-- September Events -->
                 <div class="events-section">
                     <h2 class="section-title">September Events</h2>
                     
@@ -456,36 +437,35 @@
                         <div class="event-date">September 7th</div>
                         <div class="event-title">Sunset Ice-cream Social</div>
                         <div class="event-details">
-                            Meet at 6:45 PM EST at <a href="https://maps.google.com/?q=3813+S+Manhattan+Ave,+Tampa,+FL+33611" class="location-link">Dairy Joy (3813 S Manhattan Ave, Tampa, FL 33611)</a>. After getting treats, we'll drive to <a href="https://maps.google.com/?q=5151+W+Gandy+Blvd,+Tampa,+FL" class="location-link">AJ Palonis Jr. Park (5151 W Gandy Blvd, Tampa, FL)</a> to watch the sunset at 7:30 PM EST.
+                            Meet at 6:45 PM EST at <a href="https://maps.google.com/?q=3813+S+Manhattan+Ave,+Tampa,+FL+33611" class="location-link">Dairy Joy</a>. After treats, drive to <a href="https://maps.google.com/?q=5151+W+Gandy+Blvd,+Tampa,+FL" class="location-link">AJ Palonis Jr. Park</a> for sunset at 7:30 PM EST.
                         </div>
                     </div>
 
                     <div class="event">
                         <div class="event-date">September 14th</div>
-                        <div class="event-title">Community Group Meeting/Message Discussion</div>
+                        <div class="event-title">Community Group Meeting</div>
                         <div class="event-details">
-                            Meet at 9:15 AM EST on the 2nd floor at Ballast Point to discuss the message from September 7th service.
+                            9:15 AM EST on the 2nd floor at Ballast Point to discuss the September 7th service message.
                         </div>
                     </div>
 
                     <div class="event">
                         <div class="event-date">September 21st</div>
-                        <div class="event-title">Community Group Meeting/Message Discussion</div>
+                        <div class="event-title">Community Group Meeting</div>
                         <div class="event-details">
-                            Meet at 9:15 AM EST on the 2nd floor at Ballast Point to discuss the message from September 14th service.
+                            9:15 AM EST on the 2nd floor at Ballast Point to discuss the September 14th service message.
                         </div>
                     </div>
 
                     <div class="event">
                         <div class="event-date">September 28th</div>
-                        <div class="event-title">Community Group Meeting/Message Discussion</div>
+                        <div class="event-title">Community Group Meeting</div>
                         <div class="event-details">
-                            Meet at 9:15 AM EST on the 2nd floor at Ballast Point to discuss the message from September 21st service.
+                            9:15 AM EST on the 2nd floor at Ballast Point to discuss the September 21st service message.
                         </div>
                     </div>
                 </div>
 
-                <!-- October Preview & STF Events -->
                 <div>
                     <div class="events-section">
                         <h2 class="section-title">October Preview</h2>
@@ -506,21 +486,23 @@
                         </div>
                     </div>
 
-                    <div class="events-section stf-events">
-                        <h2 class="section-title">STF Events</h2>
-                        <p style="margin-bottom: 1rem; opacity: 0.9; font-size: 0.9rem;">Check <a href="https://stfchurch.com/events/" target="_blank" style="color: white; text-decoration: underline;">STF Events page</a> for more details</p>
+                    <div class="stf-events">
+                        <h3 style="color: #1f2937; margin-bottom: 1rem; font-weight: 600;">STF Events</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: #6b7280;">
+                            Check <a href="https://stfchurch.com/events/" target="_blank" style="color: #0047AB; text-decoration: none;">STF Events</a> for details
+                        </p>
                         
-                        <div class="event stf-event">
+                        <div class="stf-event">
                             <div class="event-date">September 6th</div>
                             <div class="event-title">Homeless Outreach</div>
                         </div>
 
-                        <div class="event stf-event">
+                        <div class="stf-event">
                             <div class="event-date">September 12th</div>
                             <div class="event-title">Women's Bible Study Starts</div>
                         </div>
 
-                        <div class="event stf-event">
+                        <div class="stf-event">
                             <div class="event-date">September 29th</div>
                             <div class="event-title">Beach Baptism</div>
                         </div>
@@ -529,107 +511,83 @@
             </div>
         </div>
 
-        <!-- Prayer Requests & Service Section -->
-        <div class="prayer-service-section">
-            <div style="max-width: 700px; margin: 0 auto;">
-                <div class="section-card">
-                    <h2>🙏 Prayer Requests</h2>
+        <div class="prayer-section">
+            <div class="content">
+                <div class="prayer-card">
+                    <h2 class="prayer-title">🙏 Prayer Requests</h2>
                     
                     <div class="prayer-item">
-                        <div class="prayer-title">🤝 Our Group</div>
-                        <div class="prayer-details">For the well-being and God's movement in our group</div>
+                        <div class="prayer-name">Our Group</div>
+                        <div class="prayer-request">For the well-being and God's movement in our group</div>
                     </div>
                     
                     <div class="prayer-item">
-                        <div class="prayer-title">👨‍👩‍👧‍👦 Toni</div>
-                        <div class="prayer-details">For God's will in some family dynamics</div>
+                        <div class="prayer-name">Toni</div>
+                        <div class="prayer-request">For God's will in some family dynamics</div>
                     </div>
                     
                     <div class="prayer-item">
-                        <div class="prayer-title">👑 Matt</div>
-                        <div class="prayer-details">For submission and guidance in group leadership with Toni</div>
-                    </div>
-
-                    <div class="call-to-action">
-                        <div class="cta-box">
-                            <div class="cta-text">"For where two or three gather in my name, there am I with them." - Matthew 18:20</div>
-                            <div class="cta-subtitle">Let's lift each other up in prayer and seek God's direction for our service together</div>
-                        </div>
+                        <div class="prayer-name">Matt</div>
+                        <div class="prayer-request">For submission and guidance in group leadership with Toni</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Looking Ahead Section -->
-        <div class="looking-ahead-section">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="color: #1f2937; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem;">👀 Looking Ahead - Exciting Events Coming!</h2>
+        <div class="looking-ahead">
+            <div class="content">
+                <h2 class="section-title">Looking Ahead</h2>
                 
                 <div class="future-events-grid">
                     <div class="future-event-card">
-                        <div class="event-month" style="color: #f59e0b;">🎃 October</div>
-                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.25rem;">Candy Trail</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">Date TBD - Stay tuned for details!</div>
+                        <div class="future-month">October</div>
+                        <div class="future-title">Candy Trail</div>
+                        <div class="future-details">Date TBD</div>
                     </div>
 
                     <div class="future-event-card">
-                        <div class="event-month" style="color: #d97706;">🦃 November</div>
-                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.5rem;">Friendsgiving</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">
-                            <strong>November 15th</strong><br>
-                            Format TBD - Get ready to give thanks together!
-                        </div>
+                        <div class="future-month">November</div>
+                        <div class="future-title">Friendsgiving</div>
+                        <div class="future-details">November 15th - Format TBD</div>
                     </div>
 
                     <div class="future-event-card">
-                        <div class="event-month" style="color: #dc2626;">🎄 December</div>
-                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.25rem;">Christmas Gathering</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">Date TBD - Celebrating the season together!</div>
+                        <div class="future-month">December</div>
+                        <div class="future-title">Christmas Gathering</div>
+                        <div class="future-details">Date TBD</div>
                     </div>
 
                     <div class="future-event-card">
-                        <div class="event-month" style="color: #0047AB;">❄️ January</div>
-                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.25rem;">Fire Pit, S'mores & Worship</div>
-                        <div style="color: #6b7280; font-size: 0.9rem;">Cozy winter gathering with fellowship and praise</div>
+                        <div class="future-month">January</div>
+                        <div class="future-title">Fire Pit & Worship</div>
+                        <div class="future-details">Cozy winter gathering</div>
                     </div>
 
                     <div class="future-event-card">
-                        <div class="event-month" style="color: #50C878;">💖 February</div>
-                        <div style="color: #1f2937; font-weight: 600; margin-bottom: 0.5rem;">Love of God Valentine's Day Outing</div>
-                        <div style="color: #6b7280; font-size: 0.9rem; margin-bottom: 0.75rem;">
-                            <strong>February 14th</strong>
-                        </div>
-                        <div style="background: #f8fafc; border-radius: 8px; padding: 0.75rem; border: 1px solid #e2e8f0;">
-                            <div style="color: #0047AB; font-weight: 600; margin-bottom: 0.25rem; font-size: 0.85rem;">Location Ideas:</div>
-                            <div style="color: #4a5568; font-size: 0.8rem; line-height: 1.4;">
-                                • Replay Pinball Museum (Tarpon Springs)<br>
-                                • Dave & Buster's (Brandon)<br>
-                                • Escape Room Adventure<br>
-                                • Other creative suggestions welcome!
-                            </div>
-                        </div>
+                        <div class="future-month">February</div>
+                        <div class="future-title">Valentine's Day Outing</div>
+                        <div class="future-details">February 14th - Location options: Pinball Museum, Dave & Buster's, Escape Room</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Calendar Links Section -->
-        <div class="calendar-links-section">
+        <div class="calendar-links">
             <h2>📅 Interactive Calendars</h2>
-            <p>View, export, and never miss an event!</p>
+            <p>View and export upcoming events</p>
             <div class="calendar-buttons">
-                <a href="acts_calendar.html" class="calendar-button">📋 ACTS Events Calendar</a>
-                <a href="stf_calendar.html" class="calendar-button">⛪ STF Events Calendar</a>
+                <a href="acts_calendar.html" class="calendar-button">ACTS Events Calendar</a>
+                <a href="stf_calendar.html" class="calendar-button secondary">STF Events Calendar</a>
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <p>Stay connected • Walk in faith • Grow together</p>
-            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2);">
-                <p style="font-weight: 600;">📞 RSVP & Questions</p>
-                <p style="color: white; font-weight: 600;">Matt May • (813) 774-0703 or Toni Sanchez (813)-340-4556</p>
-                <p style="font-size: 0.9rem; opacity: 0.8;">All event times in Eastern Standard Time (EST)</p>
+            <div class="footer-contact">
+                <p><strong>RSVP & Questions</strong></p>
+                <p>Matt May • <a href="tel:813-774-0703" class="contact-phone">(813) 774-0703</a></p>
+                <p>Toni Sanchez • <a href="tel:813-340-4556" class="contact-phone">(813) 340-4556</a></p>
+                <p style="font-size: 0.9rem; color: #9ca3af;">All times Eastern Standard Time (EST)</p>
             </div>
         </div>
     </div>
