@@ -12,36 +12,66 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fafafa;
             min-height: 100vh;
             padding: 2rem 1rem;
+            color: #1a1a1a;
         }
 
         .calendar-container {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            border: 1px solid #f3f4f6;
         }
 
         .header {
-            background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
-            color: white;
+            background: white;
+            color: #1f2937;
             padding: 2rem;
             text-align: center;
+            border-bottom: 1px solid #f3f4f6;
+            position: relative;
+        }
+
+        .back-nav {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #4b5563;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .back-nav:hover {
+            background: #0047AB;
+            color: white;
+            border-color: #0047AB;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0047AB, #50C878);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            color: #6b7280;
+            font-size: 1rem;
         }
 
         .calendar-nav {
@@ -49,31 +79,32 @@
             justify-content: center;
             align-items: center;
             padding: 1.5rem;
-            background: #f8fafc;
-            border-bottom: 1px solid #e2e8f0;
+            background: white;
+            border-bottom: 1px solid #f3f4f6;
             gap: 2rem;
         }
 
         .nav-button {
-            background: #4e54c8;
-            color: white;
-            border: none;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #4b5563;
             padding: 0.75rem 1.5rem;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
 
         .nav-button:hover {
-            background: #3c4aaa;
-            transform: translateY(-2px);
+            background: #0047AB;
+            color: white;
+            border-color: #0047AB;
         }
 
         .current-month {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #2d3748;
+            color: #1f2937;
             min-width: 200px;
             text-align: center;
         }
@@ -85,12 +116,13 @@
         }
 
         .calendar-header {
-            background: #e2e8f0;
+            background: #fafafa;
             padding: 1rem;
             text-align: center;
             font-weight: 600;
-            color: #4a5568;
-            border-right: 1px solid #cbd5e0;
+            color: #6b7280;
+            border-right: 1px solid #f3f4f6;
+            border-bottom: 1px solid #f3f4f6;
         }
 
         .calendar-header:last-child {
@@ -99,16 +131,16 @@
 
         .calendar-day {
             min-height: 120px;
-            border-right: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 0.5rem;
+            border-right: 1px solid #f3f4f6;
+            border-bottom: 1px solid #f3f4f6;
+            padding: 0.75rem;
             position: relative;
             background: white;
             transition: background-color 0.2s ease;
         }
 
         .calendar-day:hover {
-            background: #f7fafc;
+            background: #fafafa;
         }
 
         .calendar-day:last-child {
@@ -117,50 +149,47 @@
 
         .day-number {
             font-weight: 600;
-            color: #2d3748;
+            color: #1f2937;
             margin-bottom: 0.5rem;
         }
 
         .other-month .day-number {
-            color: #a0aec0;
+            color: #9ca3af;
         }
 
         .today {
-            background: linear-gradient(135deg, #4e54c8, #667eea);
+            background: #f8fafc;
+            border: 2px solid #0047AB;
         }
 
         .today .day-number {
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #0047AB;
             font-weight: 700;
         }
 
         .event {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: #0047AB;
             color: white;
-            padding: 0.25rem 0.5rem;
-            margin-bottom: 0.25rem;
-            border-radius: 6px;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 0.4rem;
+            border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .event:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #003a94;
         }
 
         .event.special {
-            background: linear-gradient(135deg, #f56565, #e53e3e);
+            background: #50C878;
+        }
+
+        .event.special:hover {
+            background: #459a68;
         }
 
         .event-details {
@@ -169,19 +198,21 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             max-width: 500px;
             width: 90%;
             z-index: 1000;
             display: none;
+            border: 1px solid #f3f4f6;
         }
 
         .event-details h3 {
-            color: #2d3748;
+            color: #1f2937;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .event-details p {
@@ -196,14 +227,14 @@
             right: 1rem;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            color: #a0aec0;
+            color: #9ca3af;
             transition: color 0.2s ease;
         }
 
         .event-details .close-btn:hover {
-            color: #2d3748;
+            color: #1f2937;
         }
 
         .overlay {
@@ -222,62 +253,88 @@
             justify-content: center;
             gap: 2rem;
             padding: 1.5rem;
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
+            background: #fafafa;
+            border-top: 1px solid #f3f4f6;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #6b7280;
         }
 
         .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
         }
 
         .legend-color.regular {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: #0047AB;
         }
 
         .legend-color.special {
-            background: linear-gradient(135deg, #f56565, #e53e3e);
+            background: #50C878;
         }
 
         .actions {
             padding: 1.5rem;
             text-align: center;
-            background: #f8fafc;
-            border-top: 1px solid #e2e8f0;
+            background: white;
+            border-top: 1px solid #f3f4f6;
         }
 
         .action-button {
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-            border: none;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #4b5563;
             padding: 0.75rem 1.5rem;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
             margin: 0 0.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             text-decoration: none;
             display: inline-block;
         }
 
         .action-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(72, 187, 120, 0.3);
+            background: #0047AB;
+            color: white;
+            border-color: #0047AB;
         }
 
         .action-button.secondary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #50C878;
+            color: white;
+            border-color: #50C878;
         }
 
         .action-button.secondary:hover {
-            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+            background: #459a68;
+        }
+
+        .contact-info {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f3f4f6;
+            color: #6b7280;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-phone {
+            color: #0047AB;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-phone:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -287,11 +344,12 @@
 
             .calendar-day {
                 min-height: 100px;
+                padding: 0.5rem;
             }
 
             .event {
                 font-size: 0.7rem;
-                padding: 0.2rem 0.4rem;
+                padding: 0.3rem 0.5rem;
             }
 
             .calendar-nav {
@@ -307,14 +365,21 @@
                 gap: 1rem;
                 text-align: center;
             }
+
+            .action-button {
+                display: block;
+                margin: 0.5rem auto;
+                width: fit-content;
+            }
         }
     </style>
 </head>
 <body>
     <div class="calendar-container">
         <div class="header">
-            <h1>📅 ACTS Events Calendar</h1>
-            <p>Adult Christian Tampa Singles - Stay Connected</p>
+            <a href="index.html" class="back-nav">← Back to Hub</a>
+            <h1>ACTS Events Calendar</h1>
+            <p>Adult Christian Tampa Singles</p>
         </div>
 
         <div class="calendar-nav">
@@ -339,12 +404,14 @@
         </div>
 
         <div class="actions">
-            <button class="action-button" onclick="exportToCalendar()">📥 Export to My Calendar</button>
-            <button class="action-button secondary" onclick="showAllEvents()">📋 View All Events</button>
-            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
-                <p style="color: #4a5568; font-weight: 600;">📞 RSVP & Questions</p>
-                <p style="color: #1a202c; font-weight: 600;">Matt May • (813) 774-0703 or Toni Sanchez (813) 340-4556</p>
-                <p style="color: #718096; font-size: 0.9rem;">All times in Eastern Standard Time (EST)</p>
+            <button class="action-button" onclick="exportToCalendar()">Export to Calendar</button>
+            <button class="action-button secondary" onclick="showAllEvents()">View All Events</button>
+            
+            <div class="contact-info">
+                <p><strong>RSVP & Questions</strong></p>
+                <p>Matt May • <a href="tel:813-774-0703" class="contact-phone">(813) 774-0703</a></p>
+                <p>Toni Sanchez • <a href="tel:813-340-4556" class="contact-phone">(813) 340-4556</a></p>
+                <p style="font-size: 0.9rem; color: #9ca3af;">All times Eastern Standard Time (EST)</p>
             </div>
         </div>
     </div>
@@ -375,7 +442,7 @@
             ],
             '2025-09-14': [
                 {
-                    title: 'Community Group Meeting/Message Discussion',
+                    title: 'Community Group Meeting',
                     time: '9:15 AM EST',
                     location: 'Ballast Point Campus - 2nd Floor',
                     description: 'Discussion about the message from September 7th service.',
@@ -384,7 +451,7 @@
             ],
             '2025-09-21': [
                 {
-                    title: 'Community Group Meeting/Message Discussion',
+                    title: 'Community Group Meeting',
                     time: '9:15 AM EST',
                     location: 'Ballast Point Campus - 2nd Floor',
                     description: 'Discussion about the message from September 14th service.',
@@ -393,7 +460,7 @@
             ],
             '2025-09-28': [
                 {
-                    title: 'Community Group Meeting/Message Discussion',
+                    title: 'Community Group Meeting',
                     time: '9:15 AM EST',
                     location: 'Ballast Point Campus - 2nd Floor',
                     description: 'Discussion about the message from September 21st service.',
@@ -432,16 +499,16 @@
                     title: 'Friendsgiving',
                     time: 'TBD',
                     location: 'TBD',
-                    description: 'Celebrate Thanksgiving together as a group! Format and details to be determined. A wonderful time to give thanks for our fellowship and God\'s blessings.',
+                    description: 'Celebrate Thanksgiving together as a group! Format and details to be determined.',
                     type: 'special'
                 }
             ],
             '2026-02-14': [
                 {
-                    title: 'Love of God Valentine\'s Day Outing',
+                    title: 'Valentine\'s Day Outing',
                     time: 'TBD',
-                    location: 'TBD - Multiple Options Being Considered',
-                    description: 'Celebrate God\'s love with a fun Valentine\'s Day outing! Possible locations include Replay Pinball Museum (Tarpon Springs), Dave & Buster\'s (Brandon), Escape Room, or other creative suggestions from group members.',
+                    location: 'TBD - Multiple Options',
+                    description: 'Celebrate with a fun Valentine\'s Day outing! Possible locations include Replay Pinball Museum (Tarpon Springs), Dave & Buster\'s (Brandon), Escape Room, or other suggestions.',
                     type: 'special'
                 }
             ]
@@ -535,10 +602,10 @@
 
             content.innerHTML = `
                 <h3>${event.title}</h3>
-                <p><strong>📅 Date:</strong> ${formattedDate}</p>
-                <p><strong>🕐 Time:</strong> ${event.time}</p>
-                <p><strong>📍 Location:</strong> ${event.location}</p>
-                <p><strong>ℹ️ Details:</strong> ${event.description}</p>
+                <p><strong>Date:</strong> ${formattedDate}</p>
+                <p><strong>Time:</strong> ${event.time}</p>
+                <p><strong>Location:</strong> ${event.location}</p>
+                <p><strong>Details:</strong> ${event.description}</p>
             `;
 
             document.getElementById('overlay').style.display = 'block';
@@ -582,7 +649,7 @@
         }
 
         function showAllEvents() {
-            let eventsList = '<h3>📋 All ACTS Events</h3><br>';
+            let eventsList = '<h3>All ACTS Events</h3><br>';
             
             Object.entries(events).sort().forEach(([dateKey, dayEvents]) => {
                 const date = new Date(dateKey);
@@ -594,13 +661,14 @@
                 });
                 
                 dayEvents.forEach(event => {
+                    const borderColor = event.type === 'special' ? '#50C878' : '#0047AB';
                     eventsList += `
-                        <div style="margin-bottom: 1rem; padding: 1rem; border-left: 4px solid #48bb78; background: #f7fafc;">
-                            <h4 style="color: #2d3748; margin-bottom: 0.5rem;">${event.title}</h4>
-                            <p style="margin: 0.25rem 0;"><strong>📅</strong> ${formattedDate}</p>
-                            <p style="margin: 0.25rem 0;"><strong>🕐</strong> ${event.time}</p>
-                            <p style="margin: 0.25rem 0;"><strong>📍</strong> ${event.location}</p>
-                            <p style="margin: 0.25rem 0;">${event.description}</p>
+                        <div style="margin-bottom: 1rem; padding: 1rem; border-left: 3px solid ${borderColor}; background: #fafafa; border-radius: 4px;">
+                            <h4 style="color: #1f2937; margin-bottom: 0.5rem;">${event.title}</h4>
+                            <p style="margin: 0.25rem 0; color: #6b7280;"><strong>Date:</strong> ${formattedDate}</p>
+                            <p style="margin: 0.25rem 0; color: #6b7280;"><strong>Time:</strong> ${event.time}</p>
+                            <p style="margin: 0.25rem 0; color: #6b7280;"><strong>Location:</strong> ${event.location}</p>
+                            <p style="margin: 0.25rem 0; color: #4a5568;">${event.description}</p>
                         </div>
                     `;
                 });
