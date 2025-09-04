@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTS Newsletter - September 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .newsletter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .verse-section {
+            background: #f8fafc;
+            padding: 2rem;
+            border-left: 4px solid #4e54c8;
+            margin: 2rem 0;
+        }
+
+        .verse-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .verse-reference {
+            font-weight: 600;
+            color: #4e54c8;
+            text-align: right;
+        }
+
+        .content {
+            padding: 0 2rem 2rem;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .events-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .events-section {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4e54c8;
+            display: inline-block;
+        }
+
+        .event {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border-left: 4px solid #48bb78;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .event:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-date {
+            font-weight: 700;
+            color: #2d3748;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details {
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .location-link {
+            color: #4e54c8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .location-link:hover {
+            text-decoration: underline;
+        }
+
+        .stf-events {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stf-events .section-title {
+            color: white;
+            border-bottom-color: white;
+        }
+
+        .stf-event {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .stf-event .event-date {
+            color: white;
+        }
+
+        .stf-event .event-title {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .stf-event .event-details {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .verse-section,
+            .content {
+                padding: 1.5rem;
+            }
+
+            .event {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="newsletter-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-placeholder">✝️</div>
+                <h1 class="title">ACTS</h1>
+                <p class="subtitle">Adult Christian Tampa Singles</p>
+                <p class="date">September 2025</p>
+            </div>
+        </div>
+
+        <!-- Bible Verse -->
+        <div class="verse-section">
+            <p class="verse-text">
+                Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.
+            </p>
+            <p class="verse-reference">Colossians 3:16</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="events-grid">
+                <!-- September Events -->
+                <div class="events-section">
+                    <h2 class="section-title">September Events</h2>
+                    
+                    <div class="event">
+                        <div class="event-date">September 7th</div>
+                        <div class="event-title">Meet and Greet + Service</div>
+                        <div class="event-details">
+                            Meet at 9:15 AM EST on the 2nd floor of Ballast Point Campus. We'll have our small group discussion and then sit together for service.
+                        </div>
+                    </div>
+
+                    <div class="event">
+                        <div class="event-date">September 7th</div>
+                        <div class="event-title">Sunset Ice-cream Social</div>
+                        <div class="event-details">
+                            Meet at 6:45 PM EST at <a href="https://maps.google.com/?q=3813+S+Manhattan+Ave,+Tampa,+FL+33611" class="location-link">Dairy Joy (3813 S Manhattan Ave, Tampa, FL 33611)</a>. After getting treats, we'll drive to <a href="https://maps.google.com/?q=5151+W+Gandy+Blvd,+Tampa,+FL" class="location-link">AJ Palonis Jr. Park (5151 W Gandy Blvd, Tampa, FL)</a> to watch the sunset at 7:30 PM EST.
+                        </div>
+                    </div>
+
+                    <div class="event">
+                        <div class="event-date">September 14th</div>
+                        <div class="event-title">Community Group Meeting/Message Discussion</div>
+                        <div class="event-details">
+                            Meet at 9:15 AM EST on the 2nd floor at Ballast Point to discuss the message from September 7th service.
+                        </div>
+                    </div>
+
+                    <div class="event">
+                        <div class="event-date">September 21st</div>
+                        <div class="event-title">Community Group Meeting/Message Discussion</div>
+                        <div class="event-details">
+                            Meet at 9:15 AM EST on the 2nd floor at Ballast Point to discuss the message from September 14th service.
+                        </div>
+                    </div>
+
+                    <div class="event">
+                        <div class="event-date">September 28th</div>
+                        <div class="event-title">Community Group Meeting/Message Discussion</div>
+                        <div class="event-details">
+                            Meet at 9:15 AM EST on the 2nd floor at Ballast Point to discuss the message from September 21st service.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- October Preview & STF Events -->
+                <div>
+                    <div class="events-section">
+                        <h2 class="section-title">October Preview</h2>
+                        
+                        <div class="event">
+                            <div class="event-date">October 5th</div>
+                            <div class="event-details">Small group at Ballast Point Campus</div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">October 12th</div>
+                            <div class="event-details">Small group at Ballast Point Campus</div>
+                        </div>
+
+                        <div class="event">
+                            <div class="event-date">October 19th</div>
+                            <div class="event-details">Small group at Ballast Point Campus</div>
+                        </div>
+                    </div>
+
+                    <div class="events-section stf-events">
+                        <h2 class="section-title">STF Events</h2>
+                        <p style="margin-bottom: 1rem; opacity: 0.9; font-size: 0.9rem;">Check <a href="https://stfchurch.com/events/" target="_blank" style="color: white; text-decoration: underline;">STF Events page</a> for more details</p>
+                        
+                        <div class="event stf-event">
+                            <div class="event-date">September 6th</div>
+                            <div class="event-title">Homeless Outreach</div>
+                        </div>
+
+                        <div class="event stf-event">
+                            <div class="event-date">September 12th</div>
+                            <div class="event-title">Women's Bible Study Starts</div>
+                        </div>
+
+                        <div class="event stf-event">
+                            <div class="event-date">September 29th</div>
+                            <div class="event-title">Beach Baptism</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prayer Requests & Service Section -->
+        <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 2rem; margin: 0;">
+            <div style="max-width: 700px; margin: 0 auto;">
+                
+                <!-- Prayer Requests -->
+                <div style="margin-bottom: 2rem;">
+                    <h2 style="color: #2d3748; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                        🙏 Prayer Requests
+                    </h2>
+                    
+                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #4e54c8;">
+                        <div style="margin-bottom: 1rem;">
+                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.25rem;">🤝 Our Group</div>
+                            <div style="color: #718096; line-height: 1.6;">For the well-being and God's movement in our group</div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.25rem;">👨‍👩‍👧‍👦 Toni</div>
+                            <div style="color: #718096; line-height: 1.6;">For God's will in some family dynamics</div>
+                        </div>
+                        
+                        <div>
+                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.25rem;">👑 Matt</div>
+                            <div style="color: #718096; line-height: 1.6;">For submission and guidance in group leadership with Toni</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Opportunities -->
+                <div>
+                    <h2 style="color: #2d3748; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                        ❤️ Service Opportunities
+                    </h2>
+                    
+                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #48bb78;">
+                        <div style="background: #f0fff4; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid #9ae6b4;">
+                            <div style="font-weight: 600; color: #22543d; margin-bottom: 0.5rem; text-align: center;">🙏 Group Prayer Request</div>
+                            <div style="color: #2f855a; text-align: center; font-style: italic;">
+                                For God to lead us into the right service opportunity
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <div style="font-weight: 600; color: #4a5568; margin-bottom: 0.75rem;">Current Ideas Being Considered:</div>
+                            
+                            <div style="margin-bottom: 0.75rem;">
+                                <div style="font-weight: 600; color: #2d3748; margin-bottom: 0.25rem;">⛓️‍💥 <a href="https://abebrown.org/" target="_blank" style="color: #2d3748; text-decoration: none; border-bottom: 2px solid #4e54c8;">Abe Brown (Prison) Ministries</a></div>
+                                <div style="color: #718096; font-size: 0.9rem; padding-left: 1rem;">Reaching those behind bars with hope and restoration</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 0.75rem;">
+                                <div style="font-weight: 600; color: #2d3748; margin-bottom: 0.25rem;">🏠 Homeless Ministries</div>
+                                <div style="color: #718096; font-size: 0.9rem; padding-left: 1rem;">
+                                    • <strong><a href="https://loveinctampa.org/" target="_blank" style="color: #4e54c8; text-decoration: none; border-bottom: 1px solid #4e54c8;">Love Inc. Tampa</a></strong> - Connecting needs with resources<br>
+                                    • <strong><a href="https://amazinglovemin.org/" target="_blank" style="color: #4e54c8; text-decoration: none; border-bottom: 1px solid #4e54c8;">Amazing Love Ministries</a></strong> - Direct outreach and support
+                                </div>
+                            </div>
+                            
+                            <div style="background: #fef5e7; border-radius: 8px; padding: 1rem; border: 1px solid #f6ad55;">
+                                <div style="font-weight: 600; color: #744210; margin-bottom: 0.25rem;">💡 Have an idea?</div>
+                                <div style="color: #975a16; font-size: 0.9rem;">
+                                    We'd love to hear other service ideas from group members! Share your heart for ministry with Matt and/or Toni.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <div style="background: rgba(78, 84, 200, 0.1); border-radius: 10px; padding: 1.5rem; border: 2px solid rgba(78, 84, 200, 0.2);">
+                        <div style="color: #4e54c8; font-weight: 600; margin-bottom: 0.5rem;">
+                            "For where two or three gather in my name, there am I with them." - Matthew 18:20
+                        </div>
+                        <div style="color: #4a5568; font-size: 0.9rem;">
+                            Let's lift each other up in prayer and seek God's direction for our service together
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Looking Ahead Section -->
+        <div style="background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%); padding: 2rem; margin: 0;">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="color: #2d3748; text-align: center; margin-bottom: 1.5rem; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                    👀 Looking Ahead - Exciting Events Coming!
+                </h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    
+                    <!-- October -->
+                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #f6ad55;">
+                        <div style="color: #ed8936; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🎃 October
+                        </div>
+                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Candy Trail</div>
+                        <div style="color: #718096; font-size: 0.9rem;">Date TBD - Stay tuned for details!</div>
+                    </div>
+
+                    <!-- November -->
+                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #d69e2e;">
+                        <div style="color: #b7791f; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🦃 November
+                        </div>
+                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Friendsgiving</div>
+                        <div style="color: #718096; font-size: 0.9rem;">
+                            <strong>November 15th</strong><br>
+                            Format TBD - Get ready to give thanks together!
+                        </div>
+                    </div>
+
+                    <!-- December -->
+                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #e53e3e;">
+                        <div style="color: #c53030; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            🎄 December
+                        </div>
+                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Christmas Gathering</div>
+                        <div style="color: #718096; font-size: 0.9rem;">Date TBD - Celebrating the season together!</div>
+                    </div>
+
+                    <!-- January -->
+                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #4299e1;">
+                        <div style="color: #2b6cb0; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            ❄️ January
+                        </div>
+                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.25rem;">Fire Pit, S'mores & Worship</div>
+                        <div style="color: #718096; font-size: 0.9rem;">Cozy winter gathering with fellowship and praise</div>
+                    </div>
+
+                    <!-- February -->
+                    <div style="background: white; border-radius: 15px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); border-left: 4px solid #ed64a6;">
+                        <div style="color: #b83280; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            💖 February
+                        </div>
+                        <div style="color: #2d3748; font-weight: 600; margin-bottom: 0.5rem;">Love of God Valentine's Day Outing</div>
+                        <div style="color: #718096; font-size: 0.9rem; margin-bottom: 0.75rem;">
+                            <strong>February 14th</strong>
+                        </div>
+                        <div style="background: #fef5e7; border-radius: 8px; padding: 0.75rem; border: 1px solid #f6ad55;">
+                            <div style="color: #744210; font-weight: 600; margin-bottom: 0.25rem; font-size: 0.85rem;">Location Ideas:</div>
+                            <div style="color: #975a16; font-size: 0.8rem; line-height: 1.4;">
+                                • Replay Pinball Museum (Tarpon Springs)<br>
+                                • Dave & Buster's (Brandon)<br>
+                                • Escape Room Adventure<br>
+                                • Other creative suggestions welcome!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Encouragement Note -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <div style="background: rgba(72, 187, 120, 0.1); border-radius: 10px; padding: 1.5rem; border: 2px solid rgba(72, 187, 120, 0.2);">
+                        <div style="color: #38a169; font-weight: 600; margin-bottom: 0.5rem;">
+                            So many great moments ahead! 🎉
+                        </div>
+                        <div style="color: #4a5568; font-size: 0.9rem;">
+                            Mark your calendars and get ready for fellowship, fun, and growing deeper in faith together
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Links Section -->
+        <div style="background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%); padding: 2rem; text-align: center;">
+            <h2 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">📅 Interactive Calendars</h2>
+            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem;">View, export, and never miss an event!</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="acts_calendar.html" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; backdrop-filter: blur(10px); transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">
+                    📋 ACTS Events Calendar
+                </a>
+                <a href="stf_calendar.html" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; backdrop-filter: blur(10px); transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">
+                    ⛪ STF Events Calendar
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Stay connected • Walk in faith • Grow together</p>
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="font-weight: 600;">📞 RSVP & Questions</p>
+                <p style="color: white; font-weight: 600;">Matt May • (813) 774-0703 or Toni Sanchez (813)-340-4556</p>
+                <p style="font-size: 0.9rem; opacity: 0.8;">All event times in Eastern Standard Time (EST)</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
