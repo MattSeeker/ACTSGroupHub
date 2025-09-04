@@ -440,74 +440,77 @@
 
         // Show main application
         function showMainHub() {
-            document.getElementById('loginContainer').style.display = 'none';
-            document.getElementById('mainApp').style.display = 'flex';
-            
-            // Update user info in header
-            const displayName = currentUser;
-            document.getElementById('userName').textContent = displayName;
-            document.getElementById('userAvatar').textContent = displayName.charAt(0).toUpperCase();
-            
-            // Show admin link if user is Matt
-            const isAdmin = currentUser.toLowerCase() === 'matt';
-            if (isAdmin) {
-                document.getElementById('userRole').style.display = 'inline';
-                document.getElementById('adminLink').style.display = 'inline-block';
-            }
-            
-            // Show navigation hub
-            showNavigationHub();
-        }
-
+    document.getElementById('loginContainer').style.display = 'none';
+    document.getElementById('mainApp').style.display = 'flex';
+    
+    // Update user info in header
+    const displayName = currentUser;
+    document.getElementById('userName').textContent = displayName;
+    document.getElementById('userAvatar').textContent = displayName.charAt(0).toUpperCase();
+    
+    // Clear previous admin settings first
+    document.getElementById('userRole').style.display = 'none';
+    document.getElementById('adminLink').style.display = 'none';
+    
+    // Show admin link ONLY if current user is Matt
+    const isAdmin = currentUser && currentUser.toLowerCase() === 'matt';
+    if (isAdmin) {
+        document.getElementById('userRole').style.display = 'inline';
+        document.getElementById('adminLink').style.display = 'inline-block';
+    }
+    
+    // Show navigation hub
+    showNavigationHub();
+}
         // Show navigation hub
-        function showNavigationHub() {
-            const mainContent = document.getElementById('mainContent');
+       function showNavigationHub() {
+    const mainContent = document.getElementById('mainContent');
+    const isCurrentUserAdmin = currentUser && currentUser.toLowerCase() === 'matt';
+    
+    mainContent.innerHTML = `
+        <div style="text-align: center; padding: 2rem 0;">
+            <h2 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 2rem;">Welcome to ACTS Group Hub</h2>
+            <p style="color: #6b7280; margin-bottom: 3rem;">Choose where you'd like to go:</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 800px; margin: 0 auto;">
             
-            mainContent.innerHTML = `
-                <div style="text-align: center; padding: 2rem 0;">
-                    <h2 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 2rem;">Welcome to ACTS Group Hub</h2>
-                    <p style="color: #6b7280; margin-bottom: 3rem;">Choose where you'd like to go:</p>
+            <a href="acts_newsletter.html" class="nav-card" style="text-decoration: none;">
+                <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📧</div>
+                    <h3 style="color: #1f2937; margin-bottom: 0.5rem;">ACTS Newsletter</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Monthly updates, events, and group news</p>
                 </div>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 800px; margin: 0 auto;">
-                    
-                    <a href="acts_newsletter.html" class="nav-card" style="text-decoration: none;">
-                        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">📧</div>
-                            <h3 style="color: #1f2937; margin-bottom: 0.5rem;">ACTS Newsletter</h3>
-                            <p style="color: #6b7280; line-height: 1.6;">Monthly updates, events, and group news</p>
-                        </div>
-                    </a>
-                    
-                    <a href="acts_calendar.html" class="nav-card" style="text-decoration: none;">
-                        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">📅</div>
-                            <h3 style="color: #1f2937; margin-bottom: 0.5rem;">ACTS Events</h3>
-                            <p style="color: #6b7280; line-height: 1.6;">Group activities and gatherings</p>
-                        </div>
-                    </a>
-                    
-                    <a href="stf_calendar.html" class="nav-card" style="text-decoration: none;">
-                        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">⛪</div>
-                            <h3 style="color: #1f2937; margin-bottom: 0.5rem;">STF Events</h3>
-                            <p style="color: #6b7280; line-height: 1.6;">South Tampa Fellowship church events</p>
-                        </div>
-                    </a>
-                    
-                    ${currentUser && currentUser.toLowerCase() === 'matt' ? `
-                    <a href="acts_admin_dashboard.html" class="nav-card" style="text-decoration: none;">
-                        <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
-                            <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Admin Dashboard</h3>
-                            <p style="color: #6b7280; line-height: 1.6;">Group management and settings</p>
-                        </div>
-                    </a>
-                    ` : ''}
+            </a>
+            
+            <a href="acts_calendar.html" class="nav-card" style="text-decoration: none;">
+                <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📅</div>
+                    <h3 style="color: #1f2937; margin-bottom: 0.5rem;">ACTS Events</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Group activities and gatherings</p>
                 </div>
-            `;
-        }
-
+            </a>
+            
+            <a href="stf_calendar.html" class="nav-card" style="text-decoration: none;">
+                <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⛪</div>
+                    <h3 style="color: #1f2937; margin-bottom: 0.5rem;">STF Events</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">South Tampa Fellowship church events</p>
+                </div>
+            </a>
+            
+            ${isCurrentUserAdmin ? `
+            <a href="acts_admin_dashboard.html" class="nav-card" style="text-decoration: none;">
+                <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #f3f4f6; transition: all 0.2s ease;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
+                    <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Admin Dashboard</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Group management and settings</p>
+                </div>
+            </a>
+            ` : ''}
+        </div>
+    `;
+}
         // Login message functions
         function showLoginError(message) {
             document.getElementById('loginMessage').innerHTML = 
