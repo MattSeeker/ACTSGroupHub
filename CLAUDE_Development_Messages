@@ -1,0 +1,249 @@
+## CLAUDE DEVELOPMENT NOTES ##
+09/05/2025
+# ACTS Group Hub - Complete Project Roadmap
+
+## 🎯 **CURRENT STATUS**
+✅ **Login System:** Working with CSV authentication (13 members, shared password)  
+✅ **Modern Design:** Blue-green minimalist theme applied to index.html  
+✅ **Navigation Hub:** Clean interface linking to all group resources  
+✅ **Domain:** `actsgrouphub.com` registered and active  
+
+---
+
+## 🐛 **IMMEDIATE FIXES (Next Session)**
+
+### **Priority 1: Bug Fixes**
+- [x] **Admin Dashboard Bug:** Fixed - only shows for Matt, clears properly on user switch
+- [ ] **CSS Updates:** Apply Modern Minimalist theme to all HTML files
+  - `acts_newsletter.html`
+  - `acts_calendar.html` 
+  - `stf_calendar.html`
+  - `acts_admin_dashboard.html`
+
+### **Priority 2: Visual Polish**
+- [ ] **Consistent Navigation:** Add "Back to Hub" links on all pages
+- [ ] **Mobile Optimization:** Ensure all pages work perfectly on phones
+- [ ] **Loading States:** Better user feedback during page transitions
+
+---
+
+## 🚀 **PHASE 1: CORE FEATURES (Sessions 2-4)**
+
+### **1. Member Directory with Privacy Controls**
+**Goal:** All members can see each other, but control their own contact visibility
+
+**Features:**
+- Member list with names and profile photos / Avatar selection
+- Individual privacy toggles:
+  - Phone number (visible/hidden)
+  - Email address (visible/hidden)
+  - Personal info (visible/hidden)
+- Search/filter members
+- Contact export (for visible info only)
+
+**Technical Approach:**
+- Expand CSV to include member contact info
+- JavaScript privacy controls
+- Local storage for privacy preferences
+
+### **2. Message Board/Chat Interface**
+**Goal:** Real-time group communication
+
+**Features:**
+- Text posts/messages
+- Reply threads
+- Image uploads (if feasible)
+- File sharing (PDFs, documents)
+- Message categories (General, Prayer, Events, Fun)
+- Search message history
+
+**Technical Approach:**
+- Start with simple posting system
+- Add real-time features later
+- File upload handling
+- Message persistence
+
+### **3. Anonymous Feedback System**
+**Goal:** Safe space for group input
+
+**Features:**
+- Anonymous feedback form
+- Category selection (Suggestions, Concerns, Ideas, Praise)
+- Admin-only viewing of feedback
+- Optional follow-up system
+
+**Technical Approach:**
+- Separate feedback form
+- No user tracking for anonymity
+- Admin dashboard integration
+
+---
+
+## 🎨 **PHASE 2: PERSONALITY FEATURES (Sessions 5-7)**
+
+### **4. Member Profile Questionnaire**
+**Goal:** Help members get to know each other better
+
+**20 Fun Questions:**
+1. Favorite Bible verse?
+2. Favorite Bible character?
+3. Most interesting Bible villain?
+4. Coffee or tea?
+5. Favorite ice cream flavor?
+6. Best day of the week?
+7. Favorite color?
+8. Dream vacation destination?
+9. Favorite type of music?
+10. Favorite food?
+11. Fun activity you love?
+12. Hidden talent?
+13. Favorite season?
+14. Early bird or night owl?
+15. Favorite book (besides the Bible)?
+16. Favorite movie genre?
+17. Outdoor or indoor person?
+18. Favorite restaurant in Tampa?
+19. One word to describe yourself?
+20. What you're most grateful for today?
+
+**Features:**
+- Fun profile creation process
+- View other members' answers
+- "Match" system showing similar interests
+- Conversation starter suggestions
+
+**Technical Approach:**
+- Profile data storage
+- Comparison algorithms
+- Search by interests
+- Privacy controls for answers
+
+### **5. Enhanced Communication Tools**
+**Goal:** Rich communication options
+
+**Features:**
+- Direct messaging between members
+- Group announcements with read receipts
+- Event RSVP system
+- Photo sharing galleries
+- Prayer request tracking and updates
+
+---
+
+## ⚡ **PHASE 3: ADVANCED FEATURES (Sessions 8+)**
+
+## ⚡ **PHASE 3: ADVANCED FEATURES (Sessions 8+)**
+
+### **6. SMS Broadcast System**
+**Goal:** Weekly update alerts via text
+
+**Features:**
+- Weekly broadcast scheduling
+- Member opt-in/opt-out
+- Custom message templates
+- Delivery confirmation
+- Cost tracking (~$5/year for 13 members)
+
+### **7. Database Migration**
+**Goal:** Move from CSV to Supabase (still FREE)
+
+**Features:**
+- Real-time data sync
+- Advanced user management
+- Data backup and recovery
+- Scalability for growth
+- File uploads and storage
+
+### **8. Advanced Group Management**
+**Goal:** Sophisticated admin controls
+
+**Features:**
+- Member approval workflow
+- Role-based permissions
+- Content moderation tools
+- Group analytics and insights
+- Export/import capabilities
+
+---
+
+## 📊 **TECHNICAL ARCHITECTURE EVOLUTION**
+
+### **Current (Simple):**
+- Static HTML files
+- CSV authentication
+- Local storage
+- Manual updates
+
+### **Phase 1 (Enhanced):**
+- JavaScript-driven features
+- Local data management
+- File handling
+- Basic real-time features
+
+### **Phase 2 (Database):**
+- Supabase backend
+- Real-time subscriptions
+- Cloud storage
+- Advanced authentication
+
+### **Phase 3 (Enterprise):**
+- SMS integration
+- Advanced analytics
+- Backup systems
+- Scaling infrastructure
+
+---
+
+## 💰 **ESTIMATED COSTS**
+
+### **Current:** $0/month (GitHub Pages hosting)
+### **Phase 1:** $0-5/month (static hosting + basic features)  
+### **Phase 2:** $10-25/month (database + file storage)
+### **Phase 3:** $25-50/month (SMS + advanced features)
+
+---
+
+## ⏱️ **TIME ESTIMATES**
+
+### **Next Session (Bug Fixes):** 1 hour
+### **Phase 1 (Core Features):** 6-8 hours across 3 sessions
+### **Phase 2 (Personality):** 4-6 hours across 2 sessions  
+### **Phase 3 (Advanced):** 8-12 hours across 4+ sessions
+
+**Total Project:** 15-25 hours for full implementation
+
+---
+
+## 🎉 **SUCCESS METRICS**
+
+- [ ] All 13 members can log in successfully
+- [ ] Members regularly use the message board
+- [ ] Profile questionnaire completion rate >80%
+- [ ] Anonymous feedback submitted monthly
+- [ ] SMS broadcasts have >90% delivery rate
+- [ ] Zero security issues or privacy breaches
+- [ ] Positive feedback from group leadership
+- [ ] Platform becomes central to group communication
+
+---
+
+## 🔄 **MAINTENANCE PLAN**
+
+### **Weekly:** 
+- Monitor usage and fix minor bugs
+- Update member info as needed
+
+### **Monthly:**
+- Review feedback and plan improvements  
+- Update content and features
+
+### **Quarterly:**
+- Security updates and backups
+- Performance optimization
+- Feature roadmap review
+
+---
+
+**This is going to be an amazing platform for your church group! 🙏✨**
+
+*Ready to tackle those CSS updates and bug fixes in the next session?*
