@@ -1,0 +1,19 @@
+{
+  "name": "acts-group-hub",
+  "version": "1.0.0",
+  "description": "ACTS Group Hub - Community platform for ACTS organization",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "dev-node": "npx http-server -p 8000 -o",
+    "build": "echo 'Static HTML - no build needed'",
+    "test": "echo 'No tests configured yet'",
+    "lint": "echo 'No linting configured yet'"
+  },
+  "keywords": ["html", "css", "javascript", "acts", "community"],
+  "author": "MattSeeker <mattmayrideshare@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
