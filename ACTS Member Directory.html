@@ -1584,14 +1584,50 @@
             }
         ];
 
-        let currentUser = null; // Will be set after login
+        let currentUser = null; // Will be set from session data
         let filteredMembers = [];
         let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+        // Get user session from Vercel authentication cookie
+        function getCurrentUserFromSession() {
+            const cookies = document.cookie.split(';');
+            const authCookie = cookies.find(cookie => cookie.trim().startsWith('acts-auth='));
+            
+            if (authCookie) {
+                try {
+                    const cookieValue = authCookie.split('=')[1];
+                    const sessionData = JSON.parse(atob(cookieValue));
+                    
+                    // Find full member data
+                    const member = membersData.find(m => m.email.toLowerCase() === sessionData.email.toLowerCase());
+                    if (member) {
+                        return {
+                            ...member,
+                            ...sessionData,
+                            isAdmin: sessionData.role === 'lead_admin',
+                            canEditAll: sessionData.role === 'lead_admin',
+                            canAssignAdmin: sessionData.role === 'lead_admin',
+                            canViewAll: sessionData.role === 'pastor_contact' || sessionData.role === 'lead_admin'
+                        };
+                    }
+                } catch (e) {
+                    console.error('Error parsing session data:', e);
+                }
+            }
+            return null;
+        }
         
         function updateUserInterface() {
             // Update member count and show directory
             filteredMembers = [...membersData];
+            
+            // Update personalized greeting
+            if (currentUser) {
+                const welcomeElement = document.getElementById('currentUserName');
+                if (welcomeElement) {
+                    welcomeElement.textContent = `Welcome, ${currentUser.name}!`;
+                }
+            }
         }
 
         function isVisible(member, field) {
@@ -1621,9 +1657,9 @@
                         <div class="member-info">
                             <h3>${member.name}</h3>
                             <span class="member-role ${member.role}">${
-                                member.role === 'pastor' ? '⛪ STF Pastor - Groups' :
-                                member.role === 'steward' ? '⭐ Steward' :
-                                member.role === 'admin' ? '👑 Admin' : '👤 Member'
+                                member.role === 'pastor_contact' ? '⛪ STF Pastor - Groups' :
+                                member.role === 'lead_admin' ? '👑 Lead Admin' :
+                                member.role === 'newsletter_editor' ? '📧 Newsletter Editor' : '👤 Member'
                             }</span>
                         </div>
                     </div>
@@ -1825,8 +1861,8 @@
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if user is already logged in
-            currentUser = getCurrentUser();
+            // Get current user from Vercel session
+            currentUser = getCurrentUserFromSession();
             
             if (currentUser) {
                 // User is logged in
