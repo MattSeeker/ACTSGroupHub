@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://localhost:8000/member_directory_production.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTS Member Directory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            background: white;
+            color: #1f2937;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0047AB, #50C878);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            padding: 0.6rem 1.25rem;
+            border-radius: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background: #0047AB;
+            color: white;
+            border-color: #0047AB;
+            transform: translateY(-1px);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .directory-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .directory-title h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .member-count {
+            background: linear-gradient(135deg, rgba(0, 71, 171, 0.1), rgba(80, 200, 120, 0.1));
+            color: #0047AB;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 71, 171, 0.2);
+        }
+
+        .directory-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            border: 2px solid #f3f4f6;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            background: #fafafa;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #0047AB;
+            box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.1);
+            background: white;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .filter-select {
+            padding: 0.875rem 1rem;
+            border: 2px solid #f3f4f6;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #0047AB;
+            box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.1);
+            background: white;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .member-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #0047AB, #50C878);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.2);
+        }
+
+        .member-info h3 {
+            color: #1f2937;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 71, 171, 0.1), rgba(80, 200, 120, 0.1));
+            color: #0047AB;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 71, 171, 0.2);
+        }
+
+        .member-role.admin {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .member-role.pastor {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(160, 82, 45, 0.1));
+            color: #8b4513;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(139, 69, 19, 0.1);
+        }
+
+        .member-role.steward {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1));
+            color: #059669;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(34, 197, 94, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background: #f8fafc;
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, rgba(0, 71, 171, 0.1), rgba(80, 200, 120, 0.1));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0047AB;
+            font-size: 0.9rem;
+        }
+
+        .contact-text {
+            flex: 1;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+
+        .contact-text.private {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .privacy-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #6b7280;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .toggle-switch {
+            width: 32px;
+            height: 18px;
+            background: #d1d5db;
+            border-radius: 9px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .toggle-switch.active {
+            background: #0047AB;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(14px);
+        }
+
+        .member-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        /* Desktop: Email button takes full width when alone */
+        @media (min-width: 769px) {
+            .member-actions .action-btn:only-child {
+                flex: 1;
+            }
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0047AB, #50C878);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 71, 171, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #003a94, #459a68);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 71, 171, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8fafc;
+            color: #4b5563;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 71, 171, 0.1);
+            color: #0047AB;
+            border-color: rgba(0, 71, 171, 0.2);
+        }
+
+        .edit-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #50C878;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .edit-badge:hover {
+            background: #459a68;
+            transform: scale(1.05);
+        }
+
+        .role-badge {
+            position: absolute;
+            top: 3rem;
+            right: 1rem;
+            background: #f59e0b;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .role-badge:hover {
+            background: #d97706;
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6b7280;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #4b5563;
+        }
+
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .directory-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .directory-controls {
+                justify-content: center;
+            }
+
+            .search-box {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member-card {
+                padding: 1.5rem;
+            }
+
+            .member-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="header-left">
+                <div>
+                    <div class="logo">👥 ACTS Member Directory</div>
+                    <div class="subtitle">Connect with your fellow members</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <div class="user-info" id="userInfo" style="display: flex;">
+                    <span id="currentUserName">Welcome, Matt May!</span>
+                </div>
+                <a href="http://localhost:8000/index.html" class="nav-link">← Back to Hub</a>
+                <a href="http://localhost:8000/acts_calendar.html" class="nav-link">📅 Calendar</a>
+                <a href="http://localhost:8000/acts_newsletter.html" class="nav-link">📧 Newsletter</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="directory-header">
+                <div class="directory-title">
+                    <h1>Member Directory</h1>
+                    <span class="member-count" id="memberCount">14 Members</span>
+                </div>
+                
+                <div class="directory-controls">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Search members..." id="searchInput">
+                    </div>
+                    <select class="filter-select" id="filterSelect">
+                        <option value="all">All Members</option>
+                        <option value="pastor">Pastor</option>
+                        <option value="steward">Stewards</option>
+                        <option value="admin">Admins</option>
+                        <option value="member">Members</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="members-grid" id="membersGrid" style="display: grid;">
+                <div class="member-card" data-member-id="1">
+                    <div class="edit-badge" onclick="editMember(1)">✏️ Edit</div>
+                    
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">MM</div>
+                        <div class="member-info">
+                            <h3>Matt May</h3>
+                            <span class="member-role steward">⭐ Steward</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-1">
+                                mattjmay.fl@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(1, &#39;email&#39;)">
+                                <span>Public</span>
+                                <div class="toggle-switch active"></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-1">
+                                813-774-0703
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(1, &#39;phone&#39;)">
+                                <span>Public</span>
+                                <div class="toggle-switch active"></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-1">
+                                5008 W Colonial Drive, #116, Tampa, FL 33611
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(1, &#39;address&#39;)">
+                                <span>Public</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="2">
+                    <div class="edit-badge" onclick="editMember(2)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(2)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">DP</div>
+                        <div class="member-info">
+                            <h3>David Paul</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-2">
+                                TCBMaster@aol.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(2, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-2">
+                                813-362-4406
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(2, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-2">
+                                1408 S Lorenzo Ave Apt 4, Tampa, FL 33629
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(2, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(2, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="3">
+                    <div class="edit-badge" onclick="editMember(3)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(3)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">AN</div>
+                        <div class="member-info">
+                            <h3>Ashley Noriega</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-3">
+                                ashley.noriega@edgehomefinance.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(3, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-3">
+                                813-369-4571
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(3, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-3">
+                                3308 W Pearl Ave, Tampa, FL 33611
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(3, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(3, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="4">
+                    <div class="edit-badge" onclick="editMember(4)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(4)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">TS</div>
+                        <div class="member-info">
+                            <h3>Toni Sanchez</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-4">
+                                quezadato@yahoo.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(4, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-4">
+                                813-340-4556
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(4, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-4">
+                                7616 W Courtney Campbell CSWY #520, Tampa, FL 33607
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(4, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(4, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="5">
+                    <div class="edit-badge" onclick="editMember(5)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(5)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">CO</div>
+                        <div class="member-info">
+                            <h3>Colleen O'Brien</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-5">
+                                Ceobrien618@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(5, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-5">
+                                813-272-5609
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(5, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-5">
+                                1504 S Bay Villa Place, Tampa, FL 33629
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(5, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(5, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="6">
+                    <div class="edit-badge" onclick="editMember(6)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(6)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">KT</div>
+                        <div class="member-info">
+                            <h3>KT Nicotra</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-6">
+                                77kt007@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(6, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-6">
+                                813-277-6439
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(6, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-6">
+                                3367 W. Wyoming Circle, Tampa, FL 33611
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(6, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(6, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="7">
+                    <div class="edit-badge" onclick="editMember(7)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(7)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">EP</div>
+                        <div class="member-info">
+                            <h3>Ethan Pineiro</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-7">
+                                ethanpineiro@live.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(7, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-7">
+                                813-817-2895
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(7, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-7">
+                                7204 Samuel Ivy Dr, Tampa, FL 33619
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(7, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(7, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="8">
+                    <div class="edit-badge" onclick="editMember(8)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(8)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">SD</div>
+                        <div class="member-info">
+                            <h3>Sara Diaz</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-8">
+                                hsc.sdiaz@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(8, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-8">
+                                813-735-0775
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(8, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-8">
+                                Tampa, FL
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(8, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(8, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="9">
+                    <div class="edit-badge" onclick="editMember(9)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(9)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">BW</div>
+                        <div class="member-info">
+                            <h3>Brittany Ward</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-9">
+                                brittanypward@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(9, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-9">
+                                850-393-8913
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(9, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-9">
+                                Tampa, FL
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(9, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(9, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="10">
+                    <div class="edit-badge" onclick="editMember(10)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(10)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">JC</div>
+                        <div class="member-info">
+                            <h3>Jessica Casucci</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-10">
+                                casucje1@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(10, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-10">
+                                980-406-1177
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(10, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-10">
+                                6302 S Selbourne Ave, Tampa, FL 33611
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(10, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(10, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="11">
+                    <div class="edit-badge" onclick="editMember(11)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(11)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">VC</div>
+                        <div class="member-info">
+                            <h3>Vanessa Castillo</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-11">
+                                windycityvanessa@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(11, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-11">
+                                863-608-9000
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(11, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-11">
+                                Tampa, FL
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(11, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(11, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="12">
+                    <div class="edit-badge" onclick="editMember(12)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(12)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">TS</div>
+                        <div class="member-info">
+                            <h3>Tony Ski</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-12">
+                                tony@gulfcoasttree.buz
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(12, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-12">
+                                813-598-0154
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(12, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-12">
+                                Tampa, FL
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(12, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(12, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="13">
+                    <div class="edit-badge" onclick="editMember(13)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(13)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">DS</div>
+                        <div class="member-info">
+                            <h3>Dean Smith</h3>
+                            <span class="member-role member">👤 Member</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-13">
+                                Dabears2604@gmail.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(13, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-13">
+                                253-691-3372
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(13, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-13">
+                                3167 Bayshore Oaks Dr, Tampa, FL 33611
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(13, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(13, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            
+                <div class="member-card" data-member-id="14">
+                    <div class="edit-badge" onclick="editMember(14)">✏️ Edit</div>
+                    <div class="role-badge" onclick="manageRole(14)">👑 Manage Role</div>
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">CS</div>
+                        <div class="member-info">
+                            <h3>Chris Sullivan</h3>
+                            <span class="member-role pastor">⛪ STF Pastor - Groups</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text " id="email-14">
+                                chris@stfchurch.com
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(14, &#39;email&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch active"></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text " id="phone-14">
+                                813-293-1664
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(14, &#39;phone&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch active"></div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text " id="address-14">
+                                STF Church, Tampa, FL
+                            </span>
+                            <div class="privacy-toggle" onclick="togglePrivacy(14, &#39;address&#39;)">
+                                <span>Force Show</span>
+                                <div class="toggle-switch "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(14, &#39;email&#39;)">
+                            📧 Email
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <h3>No members found</h3>
+                <p>Try adjusting your search or filter criteria.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+
+    <script>
+        // PRODUCTION MEMBER DATA - Real ACTS Group Information
+        let membersData = [
+            { 
+                id: 1, 
+                name: "Matt May", 
+                email: "mattjmay.fl@gmail.com", 
+                phone: "813-774-0703",
+                role: "steward", 
+                status: "active", 
+                avatar: "MM",
+                address: "5008 W Colonial Drive, #116, Tampa, FL 33611",
+                tempPassword: "Kp7nR2Vx",
+                canEditAll: true,
+                canAssignAdmin: true,
+                protectedRole: true,
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 2, 
+                name: "David Paul", 
+                email: "TCBMaster@aol.com", 
+                phone: "813-362-4406",
+                role: "member", 
+                status: "active", 
+                avatar: "DP",
+                address: "1408 S Lorenzo Ave Apt 4, Tampa, FL 33629",
+                tempPassword: "Mq8sT4Wy",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 3, 
+                name: "Ashley Noriega", 
+                email: "ashley.noriega@edgehomefinance.com", 
+                phone: "813-369-4571",
+                role: "member", 
+                status: "active", 
+                avatar: "AN",
+                address: "3308 W Pearl Ave, Tampa, FL 33611",
+                tempPassword: "Br9uP6Zv",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 4, 
+                name: "Toni Sanchez", 
+                email: "quezadato@yahoo.com", 
+                phone: "813-340-4556",
+                role: "member", 
+                status: "active", 
+                avatar: "TS",
+                address: "7616 W Courtney Campbell CSWY #520, Tampa, FL 33607",
+                tempPassword: "Dn3kL7Qm",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 5, 
+                name: "Colleen O'Brien", 
+                email: "Ceobrien618@gmail.com", 
+                phone: "813-272-5609",
+                role: "member", 
+                status: "active", 
+                avatar: "CO",
+                address: "1504 S Bay Villa Place, Tampa, FL 33629",
+                tempPassword: "Fx5jH8Rt",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 6, 
+                name: "KT Nicotra", 
+                email: "77kt007@gmail.com", 
+                phone: "813-277-6439",
+                role: "member", 
+                status: "active", 
+                avatar: "KT",
+                address: "3367 W. Wyoming Circle, Tampa, FL 33611",
+                tempPassword: "Gw4nM9Ps",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 7, 
+                name: "Ethan Pineiro", 
+                email: "ethanpineiro@live.com", 
+                phone: "813-817-2895",
+                role: "member", 
+                status: "active", 
+                avatar: "EP",
+                address: "7204 Samuel Ivy Dr, Tampa, FL 33619",
+                tempPassword: "Hv6rQ2Lx",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 8, 
+                name: "Sara Diaz", 
+                email: "hsc.sdiaz@gmail.com", 
+                phone: "813-735-0775",
+                role: "member", 
+                status: "active", 
+                avatar: "SD",
+                address: "Tampa, FL",
+                tempPassword: "Js7tK5Nw",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 9, 
+                name: "Brittany Ward", 
+                email: "brittanypward@gmail.com", 
+                phone: "850-393-8913",
+                role: "member", 
+                status: "active", 
+                avatar: "BW",
+                address: "Tampa, FL",
+                tempPassword: "Kr8vB3My",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 10, 
+                name: "Jessica Casucci", 
+                email: "casucje1@gmail.com", 
+                phone: "980-406-1177",
+                role: "member", 
+                status: "active", 
+                avatar: "JC",
+                address: "6302 S Selbourne Ave, Tampa, FL 33611",
+                tempPassword: "Lt9xC6Pz",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 11, 
+                name: "Vanessa Castillo", 
+                email: "windycityvanessa@gmail.com", 
+                phone: "863-608-9000",
+                role: "member", 
+                status: "active", 
+                avatar: "VC",
+                address: "Tampa, FL",
+                tempPassword: "Mu2yD8Qr",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 12, 
+                name: "Tony Ski", 
+                email: "tony@gulfcoasttree.buz", 
+                phone: "813-598-0154",
+                role: "member", 
+                status: "active", 
+                avatar: "TS",
+                address: "Tampa, FL",
+                tempPassword: "Nv4zF9Rs",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 13, 
+                name: "Dean Smith", 
+                email: "Dabears2604@gmail.com", 
+                phone: "253-691-3372",
+                role: "member", 
+                status: "active", 
+                avatar: "DS",
+                address: "3167 Bayshore Oaks Dr, Tampa, FL 33611",
+                tempPassword: "Pw6aG2Lt",
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: true
+                }
+            },
+            { 
+                id: 14, 
+                name: "Chris Sullivan", 
+                email: "chris@stfchurch.com", 
+                phone: "813-293-1664",
+                role: "pastor", 
+                status: "active", 
+                avatar: "CS",
+                address: "STF Church, Tampa, FL",
+                tempPassword: "Qx7bH4Mu",
+                canViewAll: true,
+                isChurchStaff: true,
+                privacy: {
+                    email: true,
+                    phone: true,
+                    address: false
+                }
+            }
+        ];
+
+        let currentUser = null; // Will be set after login
+        let filteredMembers = [];
+        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        
+        function updateUserInterface() {
+            // Update member count and show directory
+            filteredMembers = [...membersData];
+        }
+
+        function isVisible(member, field) {
+            // Admin can always see everything
+            if (currentUser.canEditAll) return true;
+            
+            // Check if admin has forced this field to be visible
+            if (member.adminOverride && member.adminOverride[field]) return true;
+            
+            // Otherwise, respect member's privacy setting
+            return member.privacy[field];
+        }
+
+        function renderMemberCard(member) {
+            const isOwnCard = member.id === currentUser.id;
+            const canEdit = isOwnCard || currentUser.canEditAll;
+            const canManageRole = currentUser.canAssignAdmin && !member.protectedRole;
+            const canTogglePrivacy = currentUser.canEditAll;
+
+            return `
+                <div class="member-card" data-member-id="${member.id}">
+                    ${canEdit ? '<div class="edit-badge" onclick="editMember(' + member.id + ')">✏️ Edit</div>' : ''}
+                    ${canManageRole && member.id !== currentUser.id ? '<div class="role-badge" onclick="manageRole(' + member.id + ')">👑 Manage Role</div>' : ''}
+                    
+                    <div class="member-header">
+                        <div class="member-avatar">${member.avatar}</div>
+                        <div class="member-info">
+                            <h3>${member.name}</h3>
+                            <span class="member-role ${member.role}">${
+                                member.role === 'pastor' ? '⛪ STF Pastor - Groups' :
+                                member.role === 'steward' ? '⭐ Steward' :
+                                member.role === 'admin' ? '👑 Admin' : '👤 Member'
+                            }</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text ${!isVisible(member, 'email') ? 'private' : ''}" id="email-${member.id}">
+                                ${isVisible(member, 'email') ? member.email : 'Email private'}
+                            </span>
+                            ${canEdit ? `<div class="privacy-toggle" onclick="togglePrivacy(${member.id}, 'email')">
+                                <span>${isOwnCard ? 'Public' : 'Force Show'}</span>
+                                <div class="toggle-switch ${isOwnCard ? (member.privacy.email ? 'active' : '') : (member.adminOverride && member.adminOverride.email ? 'active' : '')}"></div>
+                            </div>` : ''}
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span class="contact-text ${!isVisible(member, 'phone') ? 'private' : ''}" id="phone-${member.id}">
+                                ${isVisible(member, 'phone') ? member.phone : 'Phone private'}
+                            </span>
+                            ${canEdit ? `<div class="privacy-toggle" onclick="togglePrivacy(${member.id}, 'phone')">
+                                <span>${isOwnCard ? 'Public' : 'Force Show'}</span>
+                                <div class="toggle-switch ${isOwnCard ? (member.privacy.phone ? 'active' : '') : (member.adminOverride && member.adminOverride.phone ? 'active' : '')}"></div>
+                            </div>` : ''}
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text ${!isVisible(member, 'address') ? 'private' : ''}" id="address-${member.id}">
+                                ${isVisible(member, 'address') ? member.address : 'Address private'}
+                            </span>
+                            ${canEdit ? `<div class="privacy-toggle" onclick="togglePrivacy(${member.id}, 'address')">
+                                <span>${isOwnCard ? 'Public' : 'Force Show'}</span>
+                                <div class="toggle-switch ${isOwnCard ? (member.privacy.address ? 'active' : '') : (member.adminOverride && member.adminOverride.address ? 'active' : '')}"></div>
+                            </div>` : ''}
+                        </div>
+                    </div>
+
+                    ${!isOwnCard ? `
+                    <div class="member-actions">
+                        <button class="action-btn btn-primary" onclick="contactMember(${member.id}, 'email')">
+                            📧 Email
+                        </button>
+                        ${isMobile ? `<button class="action-btn btn-secondary" onclick="contactMember(${member.id}, 'phone')">
+                            📱 Call
+                        </button>` : ''}
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function renderMembers() {
+            const grid = document.getElementById('membersGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (filteredMembers.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                grid.style.display = 'grid';
+                emptyState.style.display = 'none';
+                grid.innerHTML = filteredMembers.map(member => renderMemberCard(member)).join('');
+            }
+            
+            document.getElementById('memberCount').textContent = `${filteredMembers.length} Member${filteredMembers.length !== 1 ? 's' : ''}`;
+        }
+
+        function filterMembers() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filterType = document.getElementById('filterSelect').value;
+
+            filteredMembers = membersData.filter(member => {
+                const matchesSearch = member.name.toLowerCase().includes(searchTerm) || 
+                                    member.email.toLowerCase().includes(searchTerm);
+                const matchesFilter = filterType === 'all' || member.role === filterType;
+                
+                return matchesSearch && matchesFilter;
+            });
+
+            renderMembers();
+        }
+
+        function togglePrivacy(memberId, field) {
+            const member = membersData.find(m => m.id === memberId);
+            const isOwnProfile = member && member.id === currentUser.id;
+            const isAdminOverride = currentUser.canEditAll && !isOwnProfile;
+            
+            if (member && (isOwnProfile || isAdminOverride)) {
+                if (isAdminOverride) {
+                    // Admin is toggling "Force Show" - this overrides member privacy for everyone
+                    if (!member.adminOverride) member.adminOverride = {};
+                    member.adminOverride[field] = !member.adminOverride[field];
+                    
+                    // Update display for this member
+                    renderMembers();
+                    
+                    const action = member.adminOverride[field] ? 'forced visible' : 'privacy restored';
+                    alert(`${member.name}'s ${field} is now ${action} to all members`);
+                    
+                } else {
+                    // Member is toggling their own privacy
+                    member.privacy[field] = !member.privacy[field];
+                    
+                    // Update display
+                    const element = document.getElementById(`${field}-${memberId}`);
+                    const toggle = element.parentNode.querySelector('.toggle-switch');
+                    
+                    if (member.privacy[field]) {
+                        element.textContent = member[field];
+                        element.classList.remove('private');
+                        toggle.classList.add('active');
+                    } else {
+                        element.textContent = field === 'email' ? 'Email private' : 
+                                            field === 'phone' ? 'Phone private' : 'Address private';
+                        element.classList.add('private');
+                        toggle.classList.remove('active');
+                    }
+                }
+
+                // Save to localStorage
+                localStorage.setItem('memberPrivacySettings', JSON.stringify(membersData.map(m => ({ 
+                    id: m.id, 
+                    privacy: m.privacy,
+                    adminOverride: m.adminOverride || {}
+                }))));
+            }
+        }
+
+        function contactMember(memberId, type) {
+            const member = membersData.find(m => m.id === memberId);
+            if (member) {
+                if (type === 'email' && isVisible(member, 'email')) {
+                    window.location.href = `mailto:${member.email}?subject=Hello from ACTS Group`;
+                } else if (type === 'phone' && isVisible(member, 'phone')) {
+                    // Phone button only appears on mobile, so this is always a call
+                    window.location.href = `tel:${member.phone}`;
+                } else {
+                    alert(`${member.name} has made their ${type} private.`);
+                }
+            }
+        }
+
+        function editMember(memberId) {
+            const member = membersData.find(m => m.id === memberId);
+            const isOwnProfile = member && member.id === currentUser.id;
+            const canAdminEdit = currentUser.canEditAll;
+            
+            if (member && (isOwnProfile || canAdminEdit)) {
+                const editType = isOwnProfile ? 'your profile' : `${member.name}'s profile`;
+                const additionalOptions = canAdminEdit ? '\n- Role management\n- Privacy overrides' : '';
+                
+                alert(`${isOwnProfile ? 'Profile' : 'Admin'} editing for ${editType}\n\nThis would open a form to edit:\n- Contact information\n- Privacy settings\n- Profile details${additionalOptions}\n\n(Feature coming soon!)`);
+            }
+        }
+
+        function manageRole(memberId) {
+            const member = membersData.find(m => m.id === memberId);
+            if (member && currentUser.canAssignAdmin && !member.protectedRole && member.id !== currentUser.id) {
+                const currentRole = member.role;
+                const newRole = currentRole === 'admin' ? 'member' : 'admin';
+                
+                const confirmation = confirm(`Change ${member.name}'s role from ${currentRole} to ${newRole}?\n\n${
+                    newRole === 'admin' ? 
+                    'This will give them:\n• Ability to see all member contact info\n• Ability to edit member profiles\n• Administrative dashboard access' :
+                    'This will remove their administrative privileges'
+                }`);
+                
+                if (confirmation) {
+                    member.role = newRole;
+                    if (newRole === 'admin') {
+                        member.canEditAll = true;
+                    } else {
+                        member.canEditAll = false;
+                        member.canAssignAdmin = false;
+                    }
+                    
+                    renderMembers();
+                    alert(`${member.name} is now a ${newRole}`);
+                }
+            }
+        }
+
+        // Load saved privacy settings from localStorage
+        function loadPrivacySettings() {
+            const saved = localStorage.getItem('memberPrivacySettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                settings.forEach(setting => {
+                    const member = membersData.find(m => m.id === setting.id);
+                    if (member) {
+                        member.privacy = { ...member.privacy, ...setting.privacy };
+                        member.adminOverride = { ...member.adminOverride, ...setting.adminOverride };
+                    }
+                });
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            currentUser = getCurrentUser();
+            
+            if (currentUser) {
+                // User is logged in
+                document.getElementById('currentUserName').textContent = `Welcome, ${currentUser.name}!`;
+                document.getElementById('userInfo').style.display = 'flex';
+                updateUserInterface();
+                loadPrivacySettings();
+                renderMembers();
+                hideLogin();
+            } else {
+                // Initialize directory without login
+                updateUserInterface();
+                renderMembers();
+            }
+            
+            document.getElementById('searchInput').addEventListener('input', filterMembers);
+            document.getElementById('filterSelect').addEventListener('change', filterMembers);
+        });
+
+        // Export member list (for admins)
+        function exportMemberList() {
+            if (currentUser.role === 'admin') {
+                const visibleData = filteredMembers.map(member => ({
+                    name: member.name,
+                    email: member.privacy.email ? member.email : 'Private',
+                    phone: member.privacy.phone ? member.phone : 'Private',
+                    address: member.privacy.address ? member.address : 'Private',
+                    role: member.role
+                }));
+                
+                const csv = "Name,Email,Phone,Address,Role\n" + 
+                    visibleData.map(m => `"${m.name}","${m.email}","${m.phone}","${m.address}","${m.role}"`).join('\n');
+                
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'acts-member-directory.csv';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }
+        }
+    </script>
+
+</body></html>

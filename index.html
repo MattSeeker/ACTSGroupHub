@@ -290,8 +290,8 @@
                 
                 <form id="loginForm">
                     <div class="form-group">
-                        <label for="username">Name</label>
-                        <input type="text" id="username" class="form-input" placeholder="Enter your first name" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="Enter your email address" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -341,12 +341,23 @@
 
     <script>
         // ACTS Group Members and Authentication
-        const groupMembers = [
-            'Vanessa', 'Jessica', 'Brittany', 'Matt', 'Sara', 'Ethan', 
-            'KT', 'Colleen', 'Toni', 'Ashely', 'David', 'Dean', 'Tony'
+        // Member credentials database
+        const memberCredentials = [
+            { email: "mattjmay.fl@gmail.com", password: "Mx7kR9Pq", name: "Matt May", role: "lead_admin" },
+            { email: "TCBMaster@aol.com", password: "Vn3wF8Lm", name: "Toni Sanchez", role: "newsletter_editor" },
+            { email: "ashley.noriega@edgehomefinance.com", password: "Hq5tY2Zx", name: "Ashley Noriega", role: "member" },
+            { email: "quezadato@yahoo.com", password: "Bp8nK4Rv", name: "Toni Quezada", role: "member" },
+            { email: "Ceobrien618@gmail.com", password: "Jd6mW1Ct", name: "Chloe O'Brien", role: "member" },
+            { email: "77kt007@gmail.com", password: "Fs9qE7Xh", name: "Kristin Thompson", role: "member" },
+            { email: "ethanpineiro@live.com", password: "Gn2vB5Yk", name: "Ethan Pineiro", role: "member" },
+            { email: "hsc.sdiaz@gmail.com", password: "Pt4jS8Wl", name: "Socorro Diaz", role: "member" },
+            { email: "brittanypward@gmail.com", password: "Qr7uA3Zm", name: "Brittany Ward", role: "member" },
+            { email: "casucje1@gmail.com", password: "Lx1kN6Dg", name: "Jonathan Casas", role: "member" },
+            { email: "windycityvanessa@gmail.com", password: "Nz5hM9Pb", name: "Vanessa Garcia", role: "member" },
+            { email: "tony@gulfcoasttree.buz", password: "Tw8fQ4Vc", name: "Tony Valdez", role: "member" },
+            { email: "Dabears2604@gmail.com", password: "Yr3xJ7Ks", name: "David Arroyo", role: "member" },
+            { email: "chris@stfchurch.com", password: "Cv6pL2Hf", name: "Pastor Chris Sullivan", role: "pastor_contact" }
         ];
-
-        const SHARED_PASSWORD = 'ACTS2025';
         let currentUser = null;
 
         // Initialize on page load
@@ -357,7 +368,7 @@
             document.getElementById('loginForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const username = document.getElementById('username').value.trim();
+                const email = document.getElementById('email').value.trim();
                 const password = document.getElementById('password').value;
                 const loginBtn = document.getElementById('loginBtn');
                 
@@ -366,7 +377,7 @@
                 
                 // Simulate slight delay for better UX
                 setTimeout(() => {
-                    const result = authenticateUser(username, password);
+                    const result = authenticateUser(email, password);
                     
                     if (result.success) {
                         currentUser = result.user;
@@ -390,46 +401,61 @@
         });
 
         // Authentication function
-        function authenticateUser(username, password) {
-            // Check if username exists (case-insensitive)
-            const memberFound = groupMembers.find(member => 
-                member.toLowerCase() === username.toLowerCase()
+        function authenticateUser(email, password) {
+            // Find member by email (case-insensitive)
+            const member = memberCredentials.find(m => 
+                m.email.toLowerCase() === email.toLowerCase()
             );
             
-            if (!memberFound) {
+            if (!member) {
                 return {
                     success: false,
-                    message: 'Name not found. Please check with Matt May for access.'
+                    message: 'Email not found. Please check with Matt May for access.'
                 };
             }
             
-            if (password !== SHARED_PASSWORD) {
+            if (password !== member.password) {
                 return {
                     success: false,
                     message: 'Incorrect password. Contact Matt May if you need help.'
                 };
             }
             
-            // Store login state
-            localStorage.setItem('actsCurrentUser', memberFound);
+            // Store login state with user data
+            const userData = {
+                name: member.name,
+                email: member.email,
+                role: member.role,
+                loginTime: Date.now()
+            };
+            localStorage.setItem('actsCurrentUser', JSON.stringify(userData));
             
             return {
                 success: true,
-                user: memberFound,
-                isAdmin: memberFound.toLowerCase() === 'matt'
+                user: member.name,
+                userData: userData
             };
         }
 
         // Check authentication on page load
         function checkAuth() {
-            const savedUser = localStorage.getItem('actsCurrentUser');
+            const savedUserData = localStorage.getItem('actsCurrentUser');
             
-            if (savedUser && groupMembers.includes(savedUser)) {
-                currentUser = savedUser;
-                showMainHub();
-            } else {
-                showLogin();
+            if (savedUserData) {
+                try {
+                    const userData = JSON.parse(savedUserData);
+                    // Verify user still exists in credentials
+                    const member = memberCredentials.find(m => m.email === userData.email);
+                    if (member) {
+                        currentUser = userData.name;
+                        showMainHub();
+                        return;
+                    }
+                } catch (e) {
+                    localStorage.removeItem('actsCurrentUser');
+                }
             }
+            showLogin();
         }
 
         // Show login screen
