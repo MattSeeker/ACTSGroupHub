@@ -124,8 +124,7 @@
                 });
                 
                 if (response.ok) {
-                    // Set auth cookie and redirect
-                    document.cookie = 'acts-auth=authenticated; path=/; max-age=86400'; // 24 hours
+                    // API already set secure cookie, just redirect
                     window.location.href = '/';
                 } else {
                     document.getElementById('authError').style.display = 'block';
